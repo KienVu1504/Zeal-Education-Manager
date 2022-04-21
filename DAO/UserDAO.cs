@@ -56,7 +56,7 @@ namespace ZealEducationManager.DAO
             }
             catch (Exception) { return false; }
         }
-        public User GetUserName(string username)
+        public User GetByUserName(string username)
         {
             return db.Users.SingleOrDefault(x => x.Username == username);
         }

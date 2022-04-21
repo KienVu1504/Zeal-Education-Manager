@@ -38,6 +38,7 @@ namespace ZealEducationManager.Model
 
         public short? TotalQuestion { get; set; }
 
+        //study vs exam
         [StringLength(1)]
         public string Type { get; set; }
 
@@ -45,6 +46,7 @@ namespace ZealEducationManager.Model
 
         public string QuestionEssay { get; set; }
 
+        //which users can join this exam?
         [StringLength(3000)]
         public string UserList { get; set; }
 

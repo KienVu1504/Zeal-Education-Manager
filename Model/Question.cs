@@ -19,6 +19,7 @@ namespace ZealEducationManager.Model
         [StringLength(4000)]
         public string Answer { get; set; }
 
+        //tn or essay?
         [StringLength(1)]
         public string Type { get; set; }
 

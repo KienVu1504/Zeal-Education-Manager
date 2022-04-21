@@ -17,6 +17,7 @@ namespace ZealEducationManager.Model
         [StringLength(10)]
         public string Code { get; set; }
 
+        //short url
         [StringLength(250)]
         public string MetaTitle { get; set; }
 
@@ -49,6 +50,7 @@ namespace ZealEducationManager.Model
         [StringLength(50)]
         public string ModifiedBy { get; set; }
 
+        //search
         [StringLength(250)]
         public string MetaKeywords { get; set; }
 
@@ -62,9 +64,11 @@ namespace ZealEducationManager.Model
         [StringLength(50)]
         public string LinkVideo { get; set; }
 
+        //pdf, video,...
         [StringLength(250)]
         public string ListType { get; set; }
 
+        //lesson name
         [StringLength(3000)]
         public string ListFile { get; set; }
     }

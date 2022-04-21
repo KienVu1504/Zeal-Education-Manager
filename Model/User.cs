@@ -41,6 +41,7 @@ namespace ZealEducationManager.Model
 
         public bool Status { get; set; }
 
+        //List of user's courses
         [StringLength(250)]
         public string ProductList { get; set; }
     }

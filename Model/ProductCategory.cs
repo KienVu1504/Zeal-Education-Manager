@@ -11,6 +11,7 @@ namespace ZealEducationManager.Model
     {
         public long Id { get; set; }
 
+        //Display name
         [StringLength(250)]
         public string MetaTitle { get; set; }
 

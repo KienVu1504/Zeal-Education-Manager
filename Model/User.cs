@@ -29,7 +29,7 @@ namespace ZealEducationManager.Model
         [StringLength(20)]
         public string Phone { get; set; }
 
-        public DateTime? CreateData { get; set; }
+        public DateTime? CreateDate { get; set; }
 
         [StringLength(50)]
         public string CreateBy { get; set; }

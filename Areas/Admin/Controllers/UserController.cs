@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ZealEducationManager.Common;
 using ZealEducationManager.DAO;
+using ZealEducationManager.Model;
 
 namespace ZealEducationManager.Areas.Admin.Controllers
 {
@@ -22,6 +24,40 @@ namespace ZealEducationManager.Areas.Admin.Controllers
         {
             new UserDAO().Delete(id);
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public JsonResult AddUserAjax(string username, string name, string password, string address, string email, string phone)
+        {
+            try
+            {
+                var dao = new UserDAO();
+                User user = new User();
+                var encryptedMd5Pas = Encryptor.MD5Hash(password);
+                user.Password = encryptedMd5Pas;
+                user.CreateDate = DateTime.Now;
+                user.Username = username;
+                user.Name = name;
+                user.Address = address;
+                user.Email = email;
+                user.Phone = phone;
+                user.Status = true;
+                long id = dao.Insert(user);
+                if (id > 0)
+                {
+                    return Json(new { status = true });
+                }
+                else
+                {
+                    return Json(new { status = false });
+                }
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    status = false
+                });
+            }
         }
     }
 }

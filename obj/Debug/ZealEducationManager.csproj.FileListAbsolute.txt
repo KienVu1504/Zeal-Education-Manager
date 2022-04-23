@@ -107,6 +107,7 @@ G:\GitHub\ZealEducationManager\bin\Microsoft.Web.Infrastructure.dll
 G:\GitHub\ZealEducationManager\bin\Newtonsoft.Json.dll
 G:\GitHub\ZealEducationManager\bin\PagedList.dll
 G:\GitHub\ZealEducationManager\bin\PagedList.Mvc.dll
+G:\GitHub\ZealEducationManager\bin\PagedList.Net.dll
 G:\GitHub\ZealEducationManager\bin\System.Web.Helpers.dll
 G:\GitHub\ZealEducationManager\bin\System.Web.Mvc.dll
 G:\GitHub\ZealEducationManager\bin\System.Web.Optimization.dll
@@ -134,4 +135,3 @@ G:\GitHub\ZealEducationManager\obj\Debug\ZealEducationManager.csproj.CoreCompile
 G:\GitHub\ZealEducationManager\obj\Debug\ZealEducationManager.csproj.CopyComplete
 G:\GitHub\ZealEducationManager\obj\Debug\ZealEducationManager.dll
 G:\GitHub\ZealEducationManager\obj\Debug\ZealEducationManager.pdb
-G:\GitHub\ZealEducationManager\bin\PagedList.Net.dll

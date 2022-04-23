@@ -68,7 +68,7 @@ namespace ZealEducationManager.DAO
             {
                 model = model.Where(x => x.Username.Contains(searchString) || x.Name.Contains(searchString));
             }
-            return model.OrderByDescending(x=>x.CreateData).ToPagedList(page, pagesize);
+            return model.OrderByDescending(x=>x.CreateDate).ToPagedList(page, pagesize);
         }
         public User ViewDetail(int id)
         {

@@ -116,6 +116,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\admin\controller\userController.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
@@ -169,7 +170,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="assets\admin\" />
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
   </ItemGroup>

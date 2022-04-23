@@ -134,3 +134,4 @@ G:\GitHub\ZealEducationManager\obj\Debug\ZealEducationManager.csproj.CoreCompile
 G:\GitHub\ZealEducationManager\obj\Debug\ZealEducationManager.csproj.CopyComplete
 G:\GitHub\ZealEducationManager\obj\Debug\ZealEducationManager.dll
 G:\GitHub\ZealEducationManager\obj\Debug\ZealEducationManager.pdb
+G:\GitHub\ZealEducationManager\bin\PagedList.Net.dll

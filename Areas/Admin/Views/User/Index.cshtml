@@ -9,7 +9,6 @@
 {
     <link href="/assets/admin/libs/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets/admin/libs/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/admin/libs/datatables/fixedHeader.bootstrap4.min.html" rel="stylesheet" type="text/css" />
     <link href="/assets/admin/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets/admin/libs/datatables/scroller.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <!-- App css -->
@@ -20,19 +19,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <table style="width:100%;">
-                    <tr>
-                        <td>
-                            <h3 class="card-title">Danh sách tài khoản người dùng</h3>
-                        </td>
-                        <td style="text-align:right;">
-                            <button class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal">Thêm mới</button>
-                        </td>
-                    </tr>
-
-                </table>
-
-
+                <h3 class="card-title">Danh sách tài khoản người dùng</h3>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -47,8 +34,6 @@
                                     <th>Email</th>
                                     <th>Trạng thái</th>
                                     <th></th>
-                                    <th></th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,96 +45,19 @@
                                         <td>@item.Name</td>
                                         <td>@item.Address</td>
                                         <td>@item.Email</td>
-                                        <td><a href="#" class="badge bg-info">@Html.Raw(@item.Status ? "<strong>Kích hoạt</strong>" : "<font style='color:red;'>Khóa</font>")</a></td>
-                                        <td style="text-align:center;width:15px;vertical-align:middle;">
-
-                                            @Ajax.ActionLink("Xóa tài khoản", "Delete", new { @id = item.Id }, new AjaxOptions
-                                         {
-                                             Confirm = "Bạn có muốn xóa không ?",
-                                             OnComplete = "$('#row_" + item.Id + "').remove()",
-                                             HttpMethod = "Delete"
-                                         }, new
-                                         {
-                                             @class = "badge badge-danger"
-                                         })
-
-
-                                        </td>
-                                        <td style="width:10px;">
-                                            <a class="badge btn-link" href="#" id="alert_@item.Id" role="button" data-toggle="modal" data-target="#con-close-modal-edit-@item.Id">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <div id="con-close-modal-edit-@item.Id" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">cập nhật tài khoản</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="field-1" class="control-label">Tài khoản</label>
-                                                                        <input type="text" class="form-control" value="@item.Username" disabled="disabled" id="e_username_@item.Id" placeholder="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="field-2" class="control-label">Mật khẩu</label>
-                                                                        <input type="text" class="form-control" value="@item.Password" id="e_password_@item.Id" placeholder="">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group">
-                                                                        <label for="field-3" class="control-label">Họ và tên</label>
-                                                                        <input type="text" class="form-control" value="@item.Name" id="e_name_@item.Id" placeholder="">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <div class="form-group no-margin">
-                                                                        <label for="field-7" class="control-label">Địa chỉ</label>
-                                                                        <input type="text" class="form-control" value="@item.Address" id="e_address_@item.Id" placeholder="">
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="field-1" class="control-label">Email</label>
-                                                                        <input type="text" class="form-control" value="@item.Email" id="e_email_@item.Id" placeholder="">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="field-2" class="control-label">Điện thoại</label>
-                                                                        <input type="text" class="form-control" value="@item.Phone" id="e_phone_@item.Id" placeholder="">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Thoát</button>
-                                                            <a class="abclaice" data-listid="@item.Id" data-password="e_password_@item.Id" data-name="e_name_@item.Id"
-                                                               data-address="e_address_@item.Id" data-email="e_email_@item.Id" data-phone="e_phone_@item.Id">
-                                                                <input type="submit" id="btnUpdateUser" class="btn btn-info waves-effect waves-light" value="Cập nhật" />
-                                                            </a>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
+                                        <td><a href="#" class="badge bg-info">@Html.Raw(@item.Status ? "<strong>Kích hoạt</strong>" : "<font style='color:red'>Khoá</font>")</a></td>
+                                        <td style="text-align:center;width:15px;vertical-align:middle">
+                                            @Ajax.ActionLink("Xoá tài khoản", "Delete", new { @id = item.Id }, new AjaxOptions
+                                            {
+                                                Confirm = "Bạn có muốn xoá không?",
+                                                OnComplete = "$('#row_" + item.Id + "').remove()",
+                                                HttpMethod = "Delete"
+                                            }, new
+                                            {
+                                                @class = "badge badge-danger"
+                                            })
                                         </td>
                                     </tr>
-
                                 }
                             </tbody>
                         </table>
@@ -161,6 +69,11 @@
 </div>
 @section ClientScript
 {
+    <!--Ajax-->
+    <script src="/assets/admin/libs/jquery/jquery.min.js"></script>
+    <script src="/assets/admin/libs/jquery/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/assets/admin/libs/jquery-easing/jquery.easing.min.js"></script>
+
     <script src="/assets/admin/libs/datatables/jquery.dataTables.min.js"></script>
     <script src="/assets/admin/libs/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="/assets/admin/libs/datatables/dataTables.responsive.min.js"></script>
@@ -170,9 +83,8 @@
     <script src="/assets/admin/libs/jszip/jszip.min.js"></script>
     <script src="/assets/admin/libs/pdfmake/pdfmake.min.js"></script>
     <script src="/assets/admin/libs/pdfmake/vfs_fonts.js"></script>
-    <script src="/assets/admin/libs/datatables/buttons.html5.min.js"></script>
+    <!--<script src="/assets/admin/libs/datatables/buttons.html5.min.js"></script>-->
     <script src="/assets/admin/libs/datatables/buttons.print.min.js"></script>
-    <script src="/assets/admin/libs/datatables/dataTables.fixedHeader.min.html"></script>
     <script src="/assets/admin/libs/datatables/dataTables.keyTable.min.js"></script>
     <script src="/assets/admin/libs/datatables/dataTables.scroller.min.js"></script>
     <!-- Datatables init -->

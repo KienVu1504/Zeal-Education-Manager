@@ -17,5 +17,11 @@ namespace ZealEducationManager.Areas.Admin.Controllers
             ViewBag.SearchString = searchString;
             return View(model);
         }
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            new UserDAO().Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }

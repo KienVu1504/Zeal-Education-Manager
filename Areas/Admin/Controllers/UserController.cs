@@ -59,5 +59,40 @@ namespace ZealEducationManager.Areas.Admin.Controllers
                 });
             }
         }
+        [HttpPost]
+        public JsonResult UpdateUserAjax(string userId, string name, string address, string email, string phone)
+        {
+            try
+            {
+                var dao = new UserDAO();
+                User user = new User();
+
+                user = dao.ViewDetail(Convert.ToInt16(userId));
+
+                user.Name = name;
+                user.Address = address;
+                user.Email = email;
+                user.Phone = phone;
+
+
+                bool editResult = dao.Update(user);
+
+                if (editResult == true)
+                {
+                    return Json(new { status = true });
+                }
+                else
+                {
+                    return Json(new { status = false });
+                }
+            }
+            catch
+            {
+                return Json(new
+                {
+                    status = false
+                });
+            }
+        }
     }
 }

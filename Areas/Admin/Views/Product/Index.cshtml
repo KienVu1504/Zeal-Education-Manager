@@ -91,9 +91,12 @@
             e.preventDefault();
             var finder = new CKFinder();
             finder.selectActionFunction = function (url) {
-                $('#m_image').var(url);
-            }
+                $('#m_image').val(url);
+            };
             finder.popup();
+        })
+        var ckEditor = CKEDITOR.replace('m_detail', {
+            customConfig:'/assets/admin/js/plugins/ckeditor/config.js',
         })
     </script>
 
@@ -143,7 +146,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group no-margin">
                             <label for="field-3" class="control-label">Diễn giải ngắn gọn</label>
                             <input type="text" class="form-control" id="m_description" placeholder="Diễn giải ngắn gọn">
                         </div>
@@ -163,7 +166,29 @@
                         <div class="form-group">
                             <label for="field-2" class="control-label">Ảnh đại diện</label>
                             <input type="text" class="form-control" id="m_image" placeholder="Hình ảnh">
-                            <a href="#" id="btnSelectImage">Chọn ảnh</a>
+                            &nbsp;<a href="#" id="btnSelectImage">Chọn ảnh</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group no-margin">
+                            <label for="field-3" class="control-label">Nội dung khoá học</label>
+                            <input type="text" class="form-control" id="m_detail" placeholder="Nội dung khoá học">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group no-margin">
+                            <label for="field-3" class="control-label">List loại file (0 video, 1 là pdf)</label>
+                            <input type="text" class="form-control" id="m_listType">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group no-margin">
+                            <label for="field-3" class="control-label">List tên file</label>
+                            <input type="text" class="form-control" id="m_listFile">
                         </div>
                     </div>
                 </div>

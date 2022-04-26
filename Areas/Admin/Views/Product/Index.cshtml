@@ -51,7 +51,7 @@
                                 {
                                     <tr id="row_@item.Id">
                                         <td>@item.Id</td>
-                                        <td>@item.Image</td>
+                                        <td><img src="@item.Image" alt="Alternate Text" style="width:100px;height:100px" /></td>
                                         <td>@item.Name</td>
                                         <td>@item.CategoryId</td>
                                         <td><a href="#" class="badge bg-info">@Html.Raw(@item.Status ? "<strong>Kích hoạt</strong>" : "<font style='color:red'>Khoá</font>")</a></td>

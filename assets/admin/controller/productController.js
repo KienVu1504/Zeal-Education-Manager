@@ -34,9 +34,9 @@
                 return;
             }
             $.ajax({
-                url: "/Product/AddUProductAjax",
+                url: "/Product/AddProductAjax",
                 data: JSON.stringify(ContributeModel),
-                ContentType: "application/json;charset=utf-8",
+                contentType: 'application/json; charset=utf-8',
                 type: "POST",
                 success: function (response) {
                     if (response.status == true) {

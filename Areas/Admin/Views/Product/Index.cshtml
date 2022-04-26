@@ -49,24 +49,125 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr id="row_@item.Id">
-                                        <td>@item.Id</td>
-                                        <td><img src="@item.Image" alt="Alternate Text" style="width:100px;height:100px" /></td>
-                                        <td>@item.Name</td>
-                                        <td>@item.CategoryId</td>
-                                        <td><a href="#" class="badge bg-info">@Html.Raw(@item.Status ? "<strong>Kích hoạt</strong>" : "<font style='color:red'>Khoá</font>")</a></td>
-                                        <td style="text-align:center;width:15px;vertical-align:middle">
-                                            @Ajax.ActionLink("Xoá khoá học", "Delete", new { @id = item.Id }, new AjaxOptions
-                                            {
-                                                Confirm = "Bạn có muốn xoá không?",
-                                                OnComplete = "$('#row_" + item.Id + "').remove()",
-                                                HttpMethod = "Delete"
-                                            }, new
-                                            {
-                                                @class = "badge badge-danger"
-                                            })
-                                        </td>
-                                    </tr>
+                                <tr id="row_@item.Id">
+                                    <td style="text-align:center;width:15px;vertical-align:middle">@item.Id</td>
+                                    <td style="text-align:center;width:15px;vertical-align:middle"><img src="@item.Image" alt="Alternate Text" style="width:50%" /></td>
+                                    <td style="text-align:center;width:15px;vertical-align:middle">@item.Name</td>
+                                    <td style="text-align:center;width:15px;vertical-align:middle">@item.CategoryId</td>
+                                    <td style="text-align:center;width:15px;vertical-align:middle"><a href="#" class="badge bg-info">@Html.Raw(@item.Status ? "<strong>Kích hoạt</strong>" : "<font style='color:red'>Khoá</font>")</a></td>
+                                    <td style="text-align:center;width:15px;vertical-align:middle">
+                                        @Ajax.ActionLink("Xoá khoá học", "Delete", new { @id = item.Id }, new AjaxOptions
+                                        {
+                                            Confirm = "Bạn có muốn xoá không?",
+                                            OnComplete = "$('#row_" + item.Id + "').remove()",
+                                            HttpMethod = "Delete"
+                                        }, new
+                                        {
+                                            @class = "badge badge-danger"
+                                        })
+                                    </td>
+                                    <td style="width:10px;">
+                                        <a class="badgebtnlink" href="#" id="alert_@item.Id" role="button" data-toggle="modal" data-target="#product-edit-@item.Id">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <div id="product-edit-@item.Id" class="modal fade bs-example-modal-lg-edit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="myLargeModalLabel">Màn hình cập nhật khoá học</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="field-1" class="control-label">Tên khoá học</label>
+                                                                    <input type="text" class="form-control" id="e_name_@item.Id" value="@item.Name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="field-2" class="control-label">Mã khoá học</label>
+                                                                    <input type="text" class="form-control" id="e_code_@item.Id" value="@item.Code">
+                                                                </div>
+                                                            </div><div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="field-2" class="control-label">Tên thể hiện</label>
+                                                                    <input type="text" class="form-control" id="e_metaTitle_@item.Id" value="@item.MetaTitle">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group no-margin">
+                                                                    <label for="field-3" class="control-label">Diễn giải ngắn gọn</label>
+                                                                    <input type="text" class="form-control" id="e_description_@item.Id" value="@item.Description">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="field-1" class="control-label">Thể loại</label>
+                                                                    <select class="form-control" id="ddlCategory_@item.Id" placeholder="---Chọn thể loại---">
+                                                                        @foreach (var item1 in productCategory)
+                                                                        {
+                                                                            if (item1.Id == @item.CategoryId)
+                                                                            {
+                                                                                <option value="@item1.Id" selected>@item1.Name</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option value="@item1.Id">@item1.Name</option>
+                                                                            }
+                                                                        }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="field-2" class="control-label">Ảnh đại diện</label>
+                                                                    <input type="text" class="form-control" id="e_image" value="@item.Image" hidden>
+                                                                    <input type="text" class="form-control" id="e_image_@item.Id" value="@item.Image">
+                                                                    &nbsp;<a href="#" id="btnSelectImageEdit">Chọn ảnh khác</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group no-margin">
+                                                                    <label for="field-3" class="control-label">List loại file (0 video, 1 là pdf)</label>
+                                                                    <input type="text" class="form-control" id="e_listType_@item.Id" value="@item.ListType">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group no-margin">
+                                                                    <label for="field-3" class="control-label">List tên file</label>
+                                                                    <input type="text" class="form-control" id="e_listFile_@item.Id" value="@item.ListFile">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group no-margin">
+                                                                    <a href="#" class="editable" data-detailedit="@item.Detail">
+                                                                        <input type="submit" class="btn btn-outline-info" data-toggle="modal" data-target=".editText" value="Cập nhật nội dung chi tiết">
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Thoát</button>
+                                                        <a href="#" class="unique" data-listid="@item.Id" data-name="e_name_@item.Id" data-code="e_code_@item.Id" data-metatitle="e_metaTitle_@item.Id" data-description="e_description_@item.Id" data-detailedit="e_detail.@item.Id" data-categoryid="ddlCategory_@item.Id" data-image="e_image_@item.Id" data-listtype="e_listType_@item.Id" data-listfile="e_listFile_@item.Id">
+                                                            <input type="submit" id="btnUpdateProduct" class="btn btn-info waves-effect waves-light" value="Cập nhật">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>
@@ -96,9 +197,21 @@
             };
             finder.popup();
         })
+        $('#btnSelectImageEdit').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#e_image').val(url);
+            };
+            finder.popup();
+        })
         var ckEditor = CKEDITOR.replace('m_detail', {
             customConfig:'/assets/admin/js/plugins/ckeditor/config.js',
         })
+        var ckEditor1 = CKEDITOR.replace('m_detailedit', {
+            customConfig: '/assets/admin/js/plugins/ckeditor/config.js',
+        })
+
     </script>
 
     <script src="/assets/admin/libs/datatables/jquery.dataTables.min.js"></script>
@@ -199,6 +312,20 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Thoát</button>
                 <button type="button" id="btnAddNew" class="btn btn-info waves-effect waves-light">Tạo mới</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade editText" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel">Cập nhật nội dung khoá học</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            </div>
+            <div class="modal-body">
+                <label for="field-3" class="control-label">Nội dung khoá học</label>
+                <input type="text" class="form-control" id="m_detailedit">
             </div>
         </div>
     </div>

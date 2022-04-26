@@ -34,5 +34,11 @@ namespace ZealEducationManager.DAO
             }
             catch (Exception) { return false; }
         }
+        public long Insert(Product entity)
+        {
+            db.Products.Add(entity);
+            db.SaveChanges();
+            return entity.Id;
+        }
     }
 }

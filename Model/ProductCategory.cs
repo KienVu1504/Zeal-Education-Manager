@@ -10,7 +10,8 @@ namespace ZealEducationManager.Model
     public partial class ProductCategory
     {
         public long Id { get; set; }
-
+        [StringLength(250)]
+        public string Name { get; set; }
         //Display name
         [StringLength(250)]
         public string MetaTitle { get; set; }

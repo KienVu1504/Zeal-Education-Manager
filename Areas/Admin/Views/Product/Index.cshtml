@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Quản trị khoá học";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var productCategory = (List<ZealEducationManager.Model.ProductCategory>)ViewBag.CategoryId;
 }
 
 @section Childcss
@@ -157,8 +158,10 @@
                         <div class="form-group">
                             <label for="field-1" class="control-label">Thể loại</label>
                             <select class="form-control" id="ddlCategory" placeholder="---Chọn thể loại---">
-                                <option value="1">Học lập trình</option>
-                                <option value="2">Kế toán</option>
+                                @foreach (var item in productCategory)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
                             </select>
                         </div>
                     </div>

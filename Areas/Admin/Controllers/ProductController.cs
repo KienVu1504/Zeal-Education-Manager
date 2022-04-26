@@ -17,6 +17,7 @@ namespace ZealEducationManager.Areas.Admin.Controllers
             var dao = new ProductDAO();
             var model = dao.ListAllPaging(searchString, page, pageSize);
             ViewBag.SearchString = searchString;
+            SetViewBag();
             return View(model);
         }
         [HttpDelete]
@@ -24,6 +25,48 @@ namespace ZealEducationManager.Areas.Admin.Controllers
         {
             new ProductDAO().Delete(id);
             return RedirectToAction("Index");
+        }
+        public void SetViewBag(long? selectedId = null)
+        {
+            var dao = new ProductCategoryDAO();
+            ViewBag.CategoryId = dao.ListAll();
+        }
+        [HttpPost]
+        public JsonResult AddProductAjax(string name, string code, string metaTitle, string description, string image, string categoryId, string detail, string listType, string listFile)
+        {
+            try
+            {
+                var dao = new ProductDAO();
+                Product product = new Product();
+                product.Name = name;
+                product.CreateDate = DateTime.Now;
+                product.Code = code;
+                product.MetaTitle = metaTitle;
+                product.Description = description;
+                product.Image = image;
+                product.CategoryId = Convert.ToInt16(categoryId);
+                product.Status = true;
+                product.Detail = detail;
+                product.ListType = listType;
+                product.ListFile = listFile;
+
+                long id = dao.Insert(product);
+                if (id > 0)
+                {
+                    return Json(new { status = true });
+                }
+                else
+                {
+                    return Json(new { status = false });
+                }
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    status = false
+                });
+            }
         }
     }
 }

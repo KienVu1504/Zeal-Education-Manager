@@ -79,3 +79,7 @@ Create table Expense(
 	SubjectId int foreign key references Subject (SubjectId) null,
 	ChargeAmount int null
 )
+
+Select Row_NUMBER() over(Order by (Select 1)) as [Sr.No], ClassId, ClassName from Class
+
+select * from Class

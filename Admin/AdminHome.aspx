@@ -7,6 +7,7 @@
             <div>
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
+
             <h2 class="text-center">Admin Home Page</h2>
         </div>
     </div>

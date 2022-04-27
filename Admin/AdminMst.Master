@@ -7,25 +7,29 @@
     <title>School Management System</title>
     <meta charset="utf-8"/>
 
-    <scrip src="https://kit.fontawesome.com/b99e675b6e.js"></scrip>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/styles.css" rel="stylesheet" />
 
-    <link href="Content/styles.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="../Scripts/jquery-3.6.0.min.js"></script>
+    <script src="../Scripts/popper.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
 
     <script>
         $(document).ready(function () {
             $(".siderbar_menu li").click(function () {
                 $(".siderbar_menu li").removeClass("active");
                 $(this).addClass("active");
-            })
+            });
 
             $(".hamburger").click(function () {
                 $(".wrapper").addClass("active");
-            })
+            });
 
-            $(".close .bg_shadow").click(function () {
+            $(".close, .bg_shadow").click(function () {
                 $(".wrapper").removeClass("active");
-            })
-        })
+            });
+        });
     </script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -44,25 +48,24 @@
 
                     <div class="profile_info">
                         <div class="profile_img">
-                            <img src="../Image/logo.png" alt="Profile Image" />
+                            <img src="../Image/logo.png" alt="profile img">
                         </div>
 
                         <div class="profile_data">
                             <p class="name">Admin Module</p>
-
                             <span>
-                                <i class="fas fa-map-marker-alt">Mumbai, India</i>
+                                <i class="fas fa-map-marker-alt"></i>
+                                Mumbai, India
                             </span>
                         </div>
                     </div>
 
-                    <ul class="sidebar_menu">
+                    <ul class="siderbar_menu">
                         <li>
                             <a href="../Admin/AdminHome.aspx">
                                 <div class="icon">
                                     <i class="fas fa-home"></i>
                                 </div>
-
                                 <div class="title">Home</div>
                             </a>
                         </li>
@@ -113,7 +116,7 @@
                                     <i class="fas fa-user-tie"></i>
                                 </div>
 
-                                <div class="title">Teacher</div>
+                                <div class="title">Teachers</div>
 
                                 <div class="arrow">
                                     <i class="fas fa-chevron-down"></i>
@@ -124,18 +127,18 @@
                                 <li>
                                     <a href="../Admin/Teacher.aspx" class="active">
                                         <i class="fas fa-user-plus pr-1"></i>
-                                        Add Teacher
+                                        Add Teachers
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="../Admin/TeacherSubject.aspx" class="active">
                                         <i class="fas fa-book-reader pr-1"></i>
-                                        Teacher Subject
+                                        Teachers Subject
                                     </a>
                                 </li>
 
-                                 <li>
+                                <li>
                                     <a href="../Admin/Expense.aspx" class="active">
                                         <i class="fas fa-hand-holding-usd pr-1"></i>
                                         Add Expense
@@ -143,7 +146,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="../Admin/ExpenseDetail.aspx" class="active">
+                                    <a href="../Admin/ExpenseDetails.aspx" class="active">
                                         <i class="fas fa-money-check-alt pr-1"></i>
                                         Expense Details
                                     </a>
@@ -157,7 +160,7 @@
                                     <i class="fas fa-user-graduate"></i>
                                 </div>
 
-                                <div class="title">Student</div>
+                                <div class="title">Students</div>
 
                                 <div class="arrow">
                                     <i class="fas fa-chevron-down"></i>
@@ -173,8 +176,8 @@
                                 </li>
 
                                 <li>
-                                    <a href="../Admin/Student.aspx" class="active">
-                                        <i class="fas fa-users pr-1"></i>
+                                    <a href="../Admin/StudAttendanceDetails.aspx" class="active">
+                                        <i class="far fa-list-alt pr-1"></i>
                                         Attendance Details
                                     </a>
                                 </li>
@@ -190,7 +193,7 @@
                                 <div class="title">Examination</div>
 
                                 <div class="arrow">
-                                    <i class="fas fa-fa-chevron-down"></i>
+                                    <i class="fas fa-chevron-down"></i>
                                 </div>
                             </a>
 
@@ -214,27 +217,27 @@
                         <li>
                             <a href="#">
                                 <div class="icon">
-                                    <i class="fas fa-calender-alt"></i>
+                                    <i class="fas fa-calendar-alt"></i>
                                 </div>
 
                                 <div class="title">Attendance</div>
 
                                 <div class="arrow">
-                                    <i class="fas fa-fa-chevron-down"></i>
+                                    <i class="fas fa-chevron-down"></i>
                                 </div>
                             </a>
 
                             <ul class="accordion">
                                 <li>
                                     <a href="../Admin/EmployeeAttendance.aspx" class="active">
-                                        <i class="fas fa-calender-plus pr-1"></i>
-                                        Add Marks
+                                        <i class="fas fa-calendar-plus pr-1"></i>
+                                        Employee Attendance
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="../Admin/MarkDetails.aspx" class="active">
-                                        <i class="fas fa-calender-check pr-1"></i>
+                                    <a href="../Admin/EmpAttendanceDetails.aspx" class="active">
+                                        <i class="fas fa-calendar-check pr-1"></i>
                                         Employee Details
                                     </a>
                                 </li>
@@ -259,7 +262,7 @@
                     </div>
                 </div>
 
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
             </div>
         </div>
     </form>

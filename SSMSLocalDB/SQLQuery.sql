@@ -74,7 +74,7 @@ create table Exam(
 )
 
 Create table Expense(
-	EcpenseId int primary key identity(1,1) not null,
+	ExpenseId int primary key identity(1,1) not null,
 	ClassId int foreign key references Class (ClassId) null,
 	SubjectId int foreign key references Subject (SubjectId) null,
 	ChargeAmount int null

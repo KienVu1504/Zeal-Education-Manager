@@ -59,9 +59,34 @@ namespace ZealEducationManager.Admin
 
         private void GetFees()
         {
-            DataTable dt = fn.Fletch("Select * from Fees");
+            DataTable dt = fn.Fletch(@"Select Row_NUMBER() over(Order by (Select 1)) as [Sr.No], f.FeeId, f.ClassId, c.ClassName, f.FeeAmount from Fees f inner join Class c on c.ClassId = f.ClassId");
             GridView1.DataSource = dt;
             GridView1.DataBind();
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
         }
     }
 }

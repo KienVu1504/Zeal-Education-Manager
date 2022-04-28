@@ -83,3 +83,5 @@ Create table Expense(
 Select Row_NUMBER() over(Order by (Select 1)) as [Sr.No], ClassId, ClassName from Class
 
 select * from Class
+
+delete from Fees

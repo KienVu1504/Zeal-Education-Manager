@@ -81,7 +81,7 @@ body {
 }
 
 .sidebar_inner .siderbar_menu {
-    height: 500px;
+    height: 100vh;
     overflow: auto;
     padding-left: 0;
 }
@@ -225,6 +225,14 @@ body {
     transition: all 0.3s ease;
 }
 
+.admin-home {
+    background-image: url('../Image/bg-admin.jpg');
+    width: 100%;
+    height: calc(100vh - 50px);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
 
 @media (max-width: 1024px) {
     .sidebar_inner {

@@ -52,10 +52,10 @@
                         </div>
 
                         <div class="profile_data">
-                            <p class="name">Admin Module</p>
+                            <p class="name">Administrator</p>
                             <span>
                                 <i class="fas fa-map-marker-alt"></i>
-                                Mumbai, India
+                                Ha Noi, Vietnam
                             </span>
                         </div>
                     </div>
@@ -258,7 +258,7 @@
                     </div>
 
                     <div class="logo">
-                        <a href="#">Mithila English High School</a>
+                        <a href="#">Zeal Education Manager</a>
                     </div>
                 </div>
 

@@ -87,9 +87,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\styles.css" />
     <Content Include="Global.asax" />
-    <Content Include="Image\bg3.jpg" />
-    <Content Include="Image\login.jpg" />
-    <Content Include="Image\logo.png" />
+    <Content Include="Image\bg-admin.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

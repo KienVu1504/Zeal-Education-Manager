@@ -53,7 +53,8 @@ namespace ZealEducationManager.Admin
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            GridView1.PageIndex = e.NewPageIndex;
+            GetClass();
         }
 
         protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)

@@ -59,17 +59,31 @@ namespace ZealEducationManager.Admin
 
         protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-
+            GridView1.EditIndex = -1;
+            GetClass();
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
-
+            GridView1.PageIndex = e.NewEditIndex;
         }
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-
+            try
+            {
+                GridViewRow row = GridView1.Rows[e.RowIndex];
+                int cId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+                string ClassName = (row.FindControl("txtClassEdit") as TextBox).Text;
+                fn.Query("Update Class set ClassName = '" + ClassName + "' where ClassId = '" + cId + "'");
+                lblMsg.Text = "Class Updated Successfully!";
+                lblMsg.CssClass = "alert alert-success";
+                GridView1.EditIndex = -1;
+                GetClass();
+            } catch(Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
+            }
         }
     }
 }

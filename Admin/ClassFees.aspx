@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="background-image:url('../Image/bg4.jpg'); width:100%; height:720px; background-repeat: no-repeat; background-size: cover; background-attachment:fixed;">
+    <div class="admin-home">
         <div class="container p-md-4 p-sm-4">
             <div>
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
@@ -12,7 +12,7 @@
 
             <div class="row mb-3 mr-lg-5 ml-lg-5 mt-md-5">
                 <div class="col-md-6">
-                    <label for="ddlClass">Class</label>
+                    <label for="ddlClass" class="label-font-size" >Class</label>
 
                     <asp:DropDownList ID="ddlClass" runat="server" CssClass="form-control"></asp:DropDownList>
 
@@ -21,21 +21,21 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="txtFeeAmounts">Fees(Annual)</label>
+                    <label for="txtFeeAmounts" class="label-font-size" >Fees(Annual)</label>
 
                     <asp:TextBox ID="txtFeeAmounts" runat="server" CssClass="form-control" placeholder="Enter Fees Amount" TextMode="Number" required></asp:TextBox>
                 </div>
             </div>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
-                <div class="col-md-3 col-md-offset-2 mb-3">
-                    <asp:Button ID="btnAdd" runat="server" CssClass="btn btn-primary btn-block" BackColor="#5558C9" Text="Add Class" OnClick="btnAdd_Click" />
+                <div class="col-md-12 col-md-offset-2 mb-3">
+                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add Class" OnClick="btnAdd_Click" />
                 </div>                
             </div>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
-                <div class="col-md-6">
-                    <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-bordered" EmptyDataText="No record to display" AutoGenerateColumns="False" AllowPaging="true" PageSize="5"
+                <div class="col-md-12">
+                    <asp:GridView ID="GridView1" runat="server" CssClass="table-font-size-17-bold table table-hover table-bordered" EmptyDataText="No record to display" AutoGenerateColumns="False" AllowPaging="true" PageSize="5"
                         OnPageIndexChanging="GridView1_PageIndexChanging" DataKeyNames="FeeId" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" 
                         OnRowUpdating="GridView1_RowUpdating">
                         <Columns>
@@ -60,11 +60,13 @@
                             </asp:TemplateField>
 
                             <asp:CommandField CausesValidation="false" HeaderText="Operation" ShowDeleteButton="True" ShowEditButton="True">
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" CssClass="Operation"/>
                             </asp:CommandField>
                         </Columns>
 
-                        <HeaderStyle BackColor="#5558c9" ForeColor="White" />
+                        <HeaderStyle HorizontalAlign = "Center" BackColor="#ac32e4" ForeColor="White"/>
+
+                        <PagerStyle HorizontalAlign = "Center" CssClass = "GridPager" />
                     </asp:GridView>
                 </div>
             </div>

@@ -253,8 +253,45 @@ body {
     font-weight: bold;
 }
 
-.table-font-size-17 {
+.table-font-size-17-bold {
     font-size: 17px;
+    font-weight: bold;
+}
+
+table a {
+    color: #AC32E4;
+}
+
+table a:hover{
+    color: purple;
+    text-decoration: underline !important;
+}
+
+.GridPager span {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px #AC32E4 solid;
+    border-radius: 10px;
+    background: linear-gradient(-68deg,#ac32e4,#4801ff);
+    color: white;
+}
+
+.GridPager a {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px #AC32E4 solid;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+}
+
+.GridPager a:hover{
+    background: linear-gradient(-68deg,#ac32e4,#4801ff);
+    color: white;
+    text-decoration: none !important;
+}
+
+.Operation a{
+    margin: 0 10px;
 }
 
 @media (max-width: 1024px) {

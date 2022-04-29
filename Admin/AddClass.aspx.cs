@@ -19,6 +19,7 @@ namespace ZealEducationManager.Admin
                 GetClass();
             }
         }
+
         private void GetClass()
         {
             DataTable dt = fn.Fletch("Select Row_NUMBER() over(Order by (Select 1)) as [Sr.No], ClassId, ClassName from Class");
@@ -66,7 +67,7 @@ namespace ZealEducationManager.Admin
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridView1.PageIndex = e.NewEditIndex;
-            GetClass();
+         GetClass();
         }
 
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -84,6 +85,23 @@ namespace ZealEducationManager.Admin
             } catch(Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "')</script>");
+            }
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                int classId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+                fn.Query("Delete from Class where ClassId = '" + classId + "'");
+                lblMsg.Text = "Class Deleted Successfully!";
+                lblMsg.CssClass = "alert alert-success";
+                GridView1.EditIndex = -1;
+                GetClass();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
     }

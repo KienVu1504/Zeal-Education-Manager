@@ -12,7 +12,7 @@
 
             <div class="row mb-3 mr-lg-5 ml-lg-5 mt-md-5">
                 <div class="col-md-12">
-                    <label for="txtClass">Class Name</label>
+                    <label class="label-font-size" for="txtClass">Class Name</label>
 
                     <asp:TextBox ID="txtClass" runat="server" CssClass="form-control" placeholder="Enter Class Name" required></asp:TextBox>
                 </div>
@@ -20,13 +20,13 @@
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                 <div class="col-md-12 col-md-offset-2 mb-3">
-                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 btn btn-primary btn-block" BackColor="#5558C9" Text="Add Class" OnClick="btnAdd_Click" />
+                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add Class" OnClick="btnAdd_Click" />
                 </div>                
             </div>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                 <div class="col-md-12">
-                    <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover table-bordered" DataKeyNames="ClassID" AutoGenerateColumns="False" EmptyDataText="No Record to display" 
+                    <asp:GridView ID="GridView1" runat="server" CssClass="table-font-size-17 table table-hover table-bordered" DataKeyNames="ClassID" AutoGenerateColumns="False" EmptyDataText="No Record to display" 
                         OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" AllowPaging="true" PageSize="5">
                         <Columns>
                             <asp:BoundField DataField="Sr.No" HeaderText="Sr.No" ReadOnly="True">
@@ -48,7 +48,7 @@
                             <asp:CommandField CausesValidation="False" HeaderText="Operation" ShowEditButton="True" />
                         </Columns>
 
-                        <HeaderStyle BackColor="#5558c9" ForeColor="White" />
+                        <HeaderStyle BackColor="#ac32e4" ForeColor="White" />
                     </asp:GridView>
                 </div>
             </div>

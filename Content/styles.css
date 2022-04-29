@@ -43,9 +43,12 @@ body {
     top: 0;
     left: 0;
     height: 100vh;
-    background: #5558c9;
+    background: linear-gradient(-68deg,#ac32e4,#4801ff);
     z-index: 999;
     transition: all 0.3s ease;
+    box-shadow: 5px 0px 5px 0px rgb(0 0 0 / 13%);
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .main_container {
@@ -169,7 +172,7 @@ body {
 
 .navbar .logo a {
     font-family: 'Trade Winds';
-    color: #5558c9;
+    color: #ac32e4;
     font-size: 20px;
 }
 
@@ -232,6 +235,26 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+}
+
+.label-font-size{
+    font-size: 17px;
+}
+
+.btn-bg-gradiant {
+    background: #ac32e4db;
+    border-color: #ac32e4db;
+    transition: all 0.3s ease;
+}
+
+.btn-bg-gradiant:hover {
+    background: #ac32e4;
+    border-color: #ac32e4;
+    font-weight: bold;
+}
+
+.table-font-size-17 {
+    font-size: 17px;
 }
 
 @media (max-width: 1024px) {

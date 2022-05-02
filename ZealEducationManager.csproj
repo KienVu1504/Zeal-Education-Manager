@@ -69,6 +69,7 @@
     <Content Include="Admin\AddClass.aspx" />
     <Content Include="Admin\AdminHome.aspx" />
     <Content Include="Admin\ClassFees.aspx" />
+    <Content Include="Admin\Subject.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -209,6 +210,13 @@
     </Compile>
     <Compile Include="Admin\ClassFees.aspx.designer.cs">
       <DependentUpon>ClassFees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Subject.aspx.cs">
+      <DependentUpon>Subject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Subject.aspx.designer.cs">
+      <DependentUpon>Subject.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

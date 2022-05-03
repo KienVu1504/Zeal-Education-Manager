@@ -29,7 +29,7 @@
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                 <div class="col-md-12 col-md-offset-2 mb-3">
-                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add Class" OnClick="btnAdd_Click" />
+                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 col-sm-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add Class" OnClick="btnAdd_Click" />
                 </div>                
             </div>
 

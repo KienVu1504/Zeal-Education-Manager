@@ -310,6 +310,10 @@ table a:hover{
         display: block;
     }
 
+    .hamburger i {
+        color: #ac32e4;
+    }
+
     .content .item {
         width: 47%;
     }

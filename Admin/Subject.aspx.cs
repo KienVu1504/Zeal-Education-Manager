@@ -101,5 +101,22 @@ namespace ZealEducationManager.Admin
                 Response.Write("<script>alert('" + ex.Message + "')</script>");
             }
         }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                int subsId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+                fn.Query("Delete from Subject where SubjectId = '" + subsId + "'");
+                lblMsg.Text = "Subject Deleted Successfully!";
+                lblMsg.CssClass = "alert alert-success";
+                GridView1.EditIndex = -1;
+                GetSubject();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
     }
 }

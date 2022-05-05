@@ -85,3 +85,7 @@ Select Row_NUMBER() over(Order by (Select 1)) as [Sr.No], ClassId, ClassName fro
 select * from Class
 
 delete from Fees
+
+select ROW_NUMBER() over(order by (select 1)) as [Sr.No], ts.Id, ts.ClassId, c.ClassName, ts.SubjectId,
+s.SubjectName, ts.TeacherId, t.Name from TeacherSubject ts inner join Class c on ts.ClassId = c.ClassId
+inner join Subject s on ts.SubjectId = s.SubjectId inner join Teacher t on ts.TeacherId = t.TeacherId

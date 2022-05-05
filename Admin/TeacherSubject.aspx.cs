@@ -14,7 +14,12 @@ namespace ZealEducationManager.Admin
         Commonfnx fn = new Commonfnx();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                GetClass();
+                GetTeacher();
+                GetTeacherSubject();
+            }
         }
 
         private void GetClass()
@@ -39,8 +44,8 @@ namespace ZealEducationManager.Admin
 
         private void GetTeacherSubject()
         {
-            DataTable dt = fn.Fletch(@"Select Row_NUMBER() over(Order by (Select 1)) as [Sr.No],ts.Id, ts.ClassId, c.ClassName, ts.SubjectId, s.SubjectName, ts.TeacherId, t.Name from TeacherSubject ts inner join Class c on 
-                                        ts.ClassId = s.ClassId inner join Subject s on ts.SubjectId inner join Teacher t on ts.TeacherId = t.TeacherId");
+            DataTable dt = fn.Fletch(@"select ROW_NUMBER() over(order by (select 1)) as [Sr.No], ts.Id, ts.ClassId, c.ClassName, ts.SubjectId, s.SubjectName, ts.TeacherId, t.Name from TeacherSubject ts inner join Class 
+                                    c on ts.ClassId = c.ClassId inner join Subject s on ts.SubjectId = s.SubjectId inner join Teacher t on ts.TeacherId = t.TeacherId");
             GridView1.DataSource = dt;
             GridView1.DataBind();
         }
@@ -57,6 +62,57 @@ namespace ZealEducationManager.Admin
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string classId = ddlClass.SelectedValue;
+                string subjectId = ddlSubject.SelectedValue;
+                string teacherId = ddlTeacher.SelectedValue;
+                DataTable dt = fn.Fletch("Select * from TeacherSubject where ClassId = '" + classId + "' and SubjectId = '" + subjectId + "' and TeacherId = '" + teacherId + "'");
+                if (dt.Rows.Count == 0)
+                {
+                    string query = "Insert into TeacherSubject values('" + classId + "','" + subjectId + "','" + teacherId + "')";
+                    fn.Query(query);
+                    lblMsg.Text = "Inserted Successfully!";
+                    lblMsg.CssClass = "alert alert-success";
+                    ddlClass.SelectedIndex = 0;
+                    ddlSubject.SelectedIndex = 0;
+                    ddlTeacher.SelectedIndex = 0;
+                    GetTeacherSubject();
+                }
+                else
+                {
+                    lblMsg.Text = "Entered <b>teacher subject</b> already exists!";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
+            }
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+        }
+
+        protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
         }

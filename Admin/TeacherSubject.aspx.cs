@@ -179,7 +179,10 @@ namespace ZealEducationManager.Admin
                     ddlSubject.DataTextField = "SubjectName";
                     ddlSubject.DataValueField = "SubjectId";
                     ddlSubject.DataBind();
-                    //ddlSubject.Items.Insert(0, "select Subject");
+                    ddlSubject.Items.Insert(0, "select Subject");
+                    string teacherSubjectId = GridView1.DataKeys[e.Row.RowIndex].Value.ToString();
+                    DataTable dataTable = fn.Fletch(@"select ts.Id, ts.ClassId, ts.SubjectId, s.SubjectName from TeacherSubject ts inner join Subject s on ts.SubjectId = s.SubjectId where ts.Id = '" + teacherSubjectId + "'");
+                    ddlSubject.SelectedValue = dataTable.Rows[0]["SubjectId"].ToString();
                 }
             }
         }

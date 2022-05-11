@@ -68,7 +68,7 @@ namespace ZealEducationManager.Admin
                 string classId = ddlClass.SelectedValue;
                 string subjectId = ddlSubject.SelectedValue;
                 string teacherId = ddlTeacher.SelectedValue;
-                DataTable dt = fn.Fletch("Select * from TeacherSubject where ClassId = '" + classId + "' and SubjectId = '" + subjectId + "' and TeacherId = '" + teacherId + "'");
+                DataTable dt = fn.Fletch("Select * from TeacherSubject where ClassId = '" + classId + "' and SubjectId = '" + subjectId + "' or TeacherId = '" + teacherId + "'");
                 if (dt.Rows.Count == 0)
                 {
                     string query = "Insert into TeacherSubject values('" + classId + "','" + subjectId + "','" + teacherId + "')";

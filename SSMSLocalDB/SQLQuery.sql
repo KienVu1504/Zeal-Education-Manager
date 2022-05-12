@@ -94,3 +94,5 @@ select ts.Id, ts.ClassId, ts.SubjectId, s.SubjectName from TeacherSubject ts inn
 
 select ROW_NUMBER() over(order by (select 1)) as [Sr.No], e.ExpenseId, e.ClassId, c.ClassName, e.SubjectId, s.SubjectName, e.ChargeAmount from Expense
 e inner join Class c on e.ClassId = c.ClassId inner join Subject s on e.SubjectId = s.SubjectId
+
+select e.ExpenseId, e.ClassId, e.SubjectId, s.SubjectName from Expense e inner join Subject s on e.SubjectId = s.SubjectId where e.ExpenseId = '1'

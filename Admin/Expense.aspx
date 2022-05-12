@@ -29,7 +29,7 @@
                         SetFocusOnError="True"></asp:RequiredFieldValidator>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 mt-2">
                     <label for="txtExpenseAmt" class="label-font-size" >Charge Amount(Per Lecture)</label>
                     
                     <asp:TextBox ID="txtExpenseAmt" runat="server" CssClass="form-control" placeholder="Enter Charge Amount" TextMode="Number" required></asp:TextBox>
@@ -80,7 +80,7 @@
 
                             <asp:TemplateField HeaderText="Charge Rs.(Per Lecture)">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Text='<%# Eval("ChargeAmount") %>' TextMode="Number"></asp:TextBox>
+                                    <asp:TextBox ID="txtExpenseAmt" runat="server" CssClass="form-control" Text='<%# Eval("ChargeAmount") %>' TextMode="Number"></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="Label3" runat="server" Text='<%# Eval("ChargeAmount") %>'></asp:Label>

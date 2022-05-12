@@ -57,10 +57,10 @@ C:\Data\GitHub\Zeal-Education-Manager\obj\Debug\ZealEducationManager.csproj.Core
 C:\Data\GitHub\Zeal-Education-Manager\obj\Debug\ZealEducationManager.csproj.CopyComplete
 C:\Data\GitHub\Zeal-Education-Manager\obj\Debug\ZealEducationManager.dll
 C:\Data\GitHub\Zeal-Education-Manager\obj\Debug\ZealEducationManager.pdb
+G:\GitHub\ZealEducationManager\bin\roslyn\csc.exe
 G:\GitHub\ZealEducationManager\bin\ZealEducationManager.dll.config
 G:\GitHub\ZealEducationManager\bin\ZealEducationManager.dll
 G:\GitHub\ZealEducationManager\bin\ZealEducationManager.pdb
-G:\GitHub\ZealEducationManager\bin\roslyn\csc.exe
 G:\GitHub\ZealEducationManager\bin\roslyn\csc.exe.config
 G:\GitHub\ZealEducationManager\bin\roslyn\csc.rsp
 G:\GitHub\ZealEducationManager\bin\roslyn\csi.exe

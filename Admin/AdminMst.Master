@@ -35,7 +35,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body class="admin-home-master">
     <form id="form1" runat="server">
         <div class="wrapper">
             <div class="sidebar">

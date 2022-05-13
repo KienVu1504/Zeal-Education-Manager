@@ -96,3 +96,5 @@ select ROW_NUMBER() over(order by (select 1)) as [Sr.No], e.ExpenseId, e.ClassId
 e inner join Class c on e.ClassId = c.ClassId inner join Subject s on e.SubjectId = s.SubjectId
 
 select e.ExpenseId, e.ClassId, e.SubjectId, s.SubjectName from Expense e inner join Subject s on e.SubjectId = s.SubjectId where e.ExpenseId = '1'
+
+select ROW_NUMBER() over(order by (select 1)) as [Sr.No], s.StudentId, s.[Name], s.DOB, s.Gender, s.Mobile, s.RollNo, s.[Address], c.ClassId, c.ClassName from Student s inner join Class c on c.ClassId = s.ClassId

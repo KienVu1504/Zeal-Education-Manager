@@ -252,17 +252,19 @@
             </div>
 
             <div class="main_container">
-                <div class="navbar">
-                    <div class="hamburger">
-                        <i class="fas fa-bars"></i>
+                    <div class="navbar">
+                        <div class="hamburger">
+                            <i class="fas fa-bars"></i>
+                        </div>
+
+                        <div class="logo">
+                            <a href="#">Zeal Education Manager</a>
+                        </div>
                     </div>
 
-                    <div class="logo">
-                        <a href="#">Zeal Education Manager</a>
-                    </div>
+                <div class="container-flex">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
                 </div>
-
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
             </div>
         </div>
     </form>

@@ -7,7 +7,7 @@
             <div>
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
-
+             
             <h2 class="text-center">New Fees</h2>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5 mt-md-5">

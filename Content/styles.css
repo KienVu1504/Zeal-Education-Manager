@@ -24,6 +24,14 @@ body {
     position: relative;
 }
 
+.text-center {
+    font-family: 'Trade Winds';
+    color: #ac32e4;
+    height: calc(100vh - 50px);
+    font-weight: bold;
+    font-size: xxx-larger;
+}
+
 .sidebar .bg_shadow {
     width: 100%;
     height: 100%;
@@ -291,6 +299,12 @@ table a:hover{
 
 .Operation a{
     margin: 0 10px;
+}
+.container-flex {
+    height: calc(100vh - 50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 1024px) {

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZealEducationManager.Admin
+namespace ZealEducationManager.Teacher
 {
 
 
-    public partial class MarkDetails
+    public partial class MarksDetails
     {
 
         /// <summary>

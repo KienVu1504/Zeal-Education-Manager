@@ -1,0 +1,125 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="TeacherMst.master.cs" Inherits="ZealEducationManager.Teacher.TeacherMst" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>School Management System</title>
+    <meta charset="utf-8"/>
+
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/styles.css" rel="stylesheet" />
+
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="../Scripts/jquery-3.6.0.min.js"></script>
+    <script src="../Scripts/umd/popper.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".siderbar_menu li").click(function () {
+                $(".siderbar_menu li").removeClass("active");
+                $(this).addClass("active");
+            });
+
+            $(".hamburger").click(function () {
+                $(".wrapper").addClass("active");
+            });
+
+            $(".close, .bg_shadow").click(function () {
+                $(".wrapper").removeClass("active");
+            });
+        });
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="admin-home-master">
+    <form id="form1" runat="server">
+        <div class="wrapper">
+            <div class="sidebar">
+                <div class="bg_shadow"></div>
+
+                <div class="sidebar_inner">
+                    <div class="close">
+                        <i class="fas fa-times"></i>
+                    </div>
+
+                    <div class="profile_info">
+                        <div class="profile_img">
+                            <img src="../Image/logo.png" alt="profile img">
+                        </div>
+
+                        <div class="profile_data">
+                            <p class="name">Teacher Module</p>
+                            <span>
+                                <i class="fas fa-map-marker-alt"></i>
+                                Ha Noi, Vietnam
+                            </span>
+                        </div>
+                    </div>
+
+                    <ul class="siderbar_menu">
+                        <li>
+                            <a href="../Teacher/TeacherHome.aspx">
+                                <div class="icon">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="title">Home</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="../Teacher/StudentAttendance.aspx">
+                                <div class="icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="title">Attendance</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="../Teacher/StudentAttendanceDetails.aspx">
+                                <div class="icon">
+                                    <i class="fas fa-address-card"></i>
+                                </div>
+                                <div class="title">Attendance Details</div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="../Teacher/MarksDetails.aspx">
+                                <div class="icon">
+                                    <i class="fas fa-clipboard-list"></i>
+                                </div>
+                                <div class="title">Marks Details</div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="logout_btn">
+                        <asp:LinkButton ID="btnLogOut" runat="server" CausesValidation="false">Logout</asp:LinkButton>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_container">
+                    <div class="navbar">
+                        <div class="hamburger">
+                            <i class="fas fa-bars"></i>
+                        </div>
+
+                        <div class="logo">
+                            <a href="#">Zeal Education Manager</a>
+                        </div>
+                    </div>
+
+                <div class="container-flex">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

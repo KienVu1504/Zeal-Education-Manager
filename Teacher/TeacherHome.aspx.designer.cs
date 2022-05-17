@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZealEducationManager.Admin
+namespace ZealEducationManager.Teacher
 {
 
 
-    public partial class MarkDetails
+    public partial class TeacherHome
     {
 
         /// <summary>
-        /// MarksDetail control.
+        /// lblMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::ZealEducationManager.MarksDetailUserControl MarksDetail;
+        protected global::System.Web.UI.WebControls.Label lblMsg;
     }
 }

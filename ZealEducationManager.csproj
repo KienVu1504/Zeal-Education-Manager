@@ -69,6 +69,7 @@
     <Content Include="Admin\AddClass.aspx" />
     <Content Include="Admin\AdminHome.aspx" />
     <Content Include="Admin\ClassFees.aspx" />
+    <Content Include="Admin\EmpAttendanceDetails.aspx" />
     <Content Include="Admin\EmployeeAttendance.aspx" />
     <Content Include="Admin\Expense.aspx" />
     <Content Include="Admin\ExpenseDetails.aspx" />
@@ -218,6 +219,13 @@
     </Compile>
     <Compile Include="Admin\ClassFees.aspx.designer.cs">
       <DependentUpon>ClassFees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EmpAttendanceDetails.aspx.cs">
+      <DependentUpon>EmpAttendanceDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EmpAttendanceDetails.aspx.designer.cs">
+      <DependentUpon>EmpAttendanceDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\EmployeeAttendance.aspx.cs">
       <DependentUpon>EmployeeAttendance.aspx</DependentUpon>

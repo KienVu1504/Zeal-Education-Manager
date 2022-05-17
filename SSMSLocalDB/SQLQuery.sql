@@ -108,3 +108,5 @@ select ROW_NUMBER() over(order by (select 1)) as [Sr.No], e.ExamId, e.ClassId, c
 select TeacherId, Name, Mobile, Email from Teacher
 
 select ROW_NUMBER() over(order by (select 1)) as [Sr.No], t.Name, ta.Status, ta.Date from TeacherAttendance ta inner join Teacher t on t.TeacherId = ta.TeacherId where DATEPART(YY, Date) = 2022 and DATEPART(M, Date) = 05 and ta.Status = 0 and ta.TeacherId = 2
+
+select StudentId, RollNo, Name, Mobile from Student where ClassId = 

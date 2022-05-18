@@ -76,6 +76,7 @@
     <Content Include="Admin\MarkDetails.aspx" />
     <Content Include="Admin\Marks.aspx" />
     <Content Include="Admin\Student.aspx" />
+    <Content Include="Admin\StudentAttendanceDetails.aspx" />
     <Content Include="Admin\Subject.aspx" />
     <Content Include="Admin\Teacher.aspx" />
     <Content Include="Admin\TeacherSubject.aspx" />
@@ -193,6 +194,7 @@
     <Content Include="StudentAttendanceUC.ascx" />
     <Content Include="Teacher\MarksDetails.aspx" />
     <Content Include="Teacher\StudentAttendance.aspx" />
+    <Content Include="Teacher\StudentAttendanceDetails.aspx" />
     <Content Include="Teacher\TeacherHome.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -274,6 +276,13 @@
     <Compile Include="Admin\Student.aspx.designer.cs">
       <DependentUpon>Student.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\StudentAttendanceDetails.aspx.cs">
+      <DependentUpon>StudentAttendanceDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\StudentAttendanceDetails.aspx.designer.cs">
+      <DependentUpon>StudentAttendanceDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Subject.aspx.cs">
       <DependentUpon>Subject.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -327,6 +336,13 @@
     </Compile>
     <Compile Include="Teacher\StudentAttendance.aspx.designer.cs">
       <DependentUpon>StudentAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher\StudentAttendanceDetails.aspx.cs">
+      <DependentUpon>StudentAttendanceDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Teacher\StudentAttendanceDetails.aspx.designer.cs">
+      <DependentUpon>StudentAttendanceDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Teacher\TeacherHome.aspx.cs">
       <DependentUpon>TeacherHome.aspx</DependentUpon>

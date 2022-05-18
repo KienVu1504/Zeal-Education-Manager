@@ -176,7 +176,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="../Admin/StudAttendanceDetails.aspx" class="active">
+                                    <a href="../Admin/StudentAttendanceDetails.aspx" class="active">
                                         <i class="far fa-list-alt pr-1"></i>
                                         Attendance Details
                                     </a>

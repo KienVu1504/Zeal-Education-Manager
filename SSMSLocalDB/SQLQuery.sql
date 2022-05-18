@@ -109,4 +109,8 @@ select TeacherId, Name, Mobile, Email from Teacher
 
 select ROW_NUMBER() over(order by (select 1)) as [Sr.No], t.Name, ta.Status, ta.Date from TeacherAttendance ta inner join Teacher t on t.TeacherId = ta.TeacherId where DATEPART(YY, Date) = 2022 and DATEPART(M, Date) = 05 and ta.Status = 0 and ta.TeacherId = 2
 
-select StudentId, RollNo, Name, Mobile from Student where ClassId = 
+select StudentId, RollNo, Name, Mobile from Student
+
+select ROW_NUMBER() over(order by (select 1)) as [Sr.No], s.Name, sa.Status, sa.Date from StudentAttendance sa inner join Student s on s.RollNo = sa.RollNo 
+                                where sa.ClassId = '" + ddlClass.SelectedValue + "' and sa.RollNo = '" + txtRollNo.Text.Trim() + "' and DATEPART(yy, Date) = '" + date.Year + "' and DATEPART(M, Date) = '" + date.Month + "' " +
+                                "and sa.Status = 1

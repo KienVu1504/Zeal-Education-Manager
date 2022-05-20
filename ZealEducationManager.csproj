@@ -96,6 +96,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\script.js" />
     <Content Include="Content\styles.css" />
     <Content Include="Global.asax" />
     <Content Include="Image\bg-admin.jpg" />

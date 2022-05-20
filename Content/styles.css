@@ -300,6 +300,29 @@ table a:hover{
     margin: 0 10px;
 }
 
+.login, .image {
+    min-height: 100vh;
+}
+
+.bg-image {
+    background-image: url('../Image/bg-admin.jpg');
+    background-size: cover;
+}
+
+.row-bg-radius{
+    z-index: 100;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.login-btn-rad-bg {
+    background: linear-gradient(-68deg,#ac32e4,#4801ff);
+}
+
+.login-btn-rad-bg:hover {
+    background: linear-gradient(90deg,#ac32e4,#4801ff);
+}
+
 @media (max-width: 1024px) {
     .sidebar_inner {
         left: -115%;

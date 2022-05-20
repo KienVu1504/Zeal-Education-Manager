@@ -14,33 +14,8 @@
     <script src="../Scripts/jquery-3.6.0.min.js"></script>
     <script src="../Scripts/umd/popper.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Content/script.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $(".siderbar_menu li").click(function () {
-                $(".siderbar_menu li").removeClass("active");
-                $(this).addClass("active");
-            });
-
-            $(".hamburger").click(function () {
-                $(".wrapper").addClass("active");
-            });
-
-            $(".close, .bg_shadow").click(function () {
-                $(".wrapper").removeClass("active");
-            });
-        });
-    </script>
-    <script>
-        $(function () {
-            var url = window.location.href;
-            $("#sub-header a").each(function () {
-                if (url == (this.href)) {
-                    $(this).closest("li").addClass("active");
-                }
-            })
-        })
-    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -64,7 +39,7 @@
                             <p class="name">Administrator</p>
                             <span>
                                 <i class="fas fa-map-marker-alt"></i>
-                                Ha Noi, Vietnam
+                                <span id="user-location"></span>
                             </span>
                         </div>
                     </div>

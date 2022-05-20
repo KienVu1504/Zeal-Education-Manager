@@ -22,7 +22,7 @@ namespace ZealEducationManager
             string email = inputEmail.Value.Trim();
             string password = inputPassword.Value.Trim();
             DataTable dt = fn.Fletch("select * from Teacher where Email = '" + email + "' and password = '" + password + "'");
-            if (email == "Admin" && password == "123")
+            if (email == "admin.123@gmail.com" && password == "8352352502")
             {
                 Session["admin"] = email;
                 Response.Redirect("Admin/AdminHome.aspx");

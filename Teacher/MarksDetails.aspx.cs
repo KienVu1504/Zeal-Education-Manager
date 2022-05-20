@@ -11,7 +11,10 @@ namespace ZealEducationManager.Teacher
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["staff"] == null)
+            {
+                Response.Redirect("../Login.aspx");
+            }
         }
     }
 }

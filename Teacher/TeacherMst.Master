@@ -31,7 +31,16 @@
             });
         });
     </script>
-
+    <script>
+        $(function () {
+            var url = window.location.href;
+            $("#sub-header a").each(function () {
+                if (url == (this.href)) {
+                    $(this).closest("li").addClass("active");
+                }
+            })
+        })
+    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -41,7 +50,7 @@
             <div class="sidebar">
                 <div class="bg_shadow"></div>
 
-                <div class="sidebar_inner">
+                <div class="sidebar_inner" id="sub-header">
                     <div class="close">
                         <i class="fas fa-times"></i>
                     </div>
@@ -99,7 +108,7 @@
                     </ul>
 
                     <div class="logout_btn">
-                        <asp:LinkButton ID="btnLogOut" runat="server" CausesValidation="false">Logout</asp:LinkButton>
+                        <asp:LinkButton ID="btnLogOut" runat="server" CausesValidation="false" OnClick="btnLogOut_Click">Logout</asp:LinkButton>
                     </div>
                 </div>
             </div>

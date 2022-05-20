@@ -14,6 +14,10 @@ namespace ZealEducationManager.Teacher
         Commonfnx fn = new Commonfnx();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["staff"] == null)
+            {
+                Response.Redirect("../Login.aspx");
+            }
             if (!IsPostBack)
             {
                 GetClass();

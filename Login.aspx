@@ -3,14 +3,18 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head runat="server">
-    <title>School Management System</title>
+    <title>Zeal Education Manager</title>
+
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/styles.css" rel="stylesheet" />
+
     <script src="Scripts/popper.min.js"></script>
     <script src="Scripts/jquery-3.6.0.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
 </head>
+
 <body>
     <form id="form1" runat="server">
         <div class="container-fluid">
@@ -27,16 +31,16 @@
                                     <p class="text-muted mb-4">Login page for Admin & Teacher</p>
 
                                     <div class="form-group mb-3">
-                                        <input id="inputEmail" type="text" placeholder="Email address" required runat="server" autofocus class="form-control rounded-pill border-0 shadow-sm px-4"/>
+                                        <input id="inputEmail" type="text" placeholder="Email address" required="required" runat="server" autofocus="autofocus" class="form-control rounded-pill border-0 shadow-sm px-4"/>
                                     </div>
 
                                     <div class="form-group mb-3 mb-2">
-                                        <input id="inputPassword" type="password" placeholder="Password" required runat="server" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
+                                        <input id="inputPassword" type="password" placeholder="Password" required="required" runat="server" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
                                     </div>
 
                                     <asp:Button ID="btnLogin" runat="server" Text="Sign In" CssClass="btn btn-primary btn-block text-uppercase mb-2 rounded-pill login-btn-rad-bg shadow-sm col-md-12" OnClick="btnLogin_Click" />
 
-                                    <div class="text-center d-flex justify-content-between mt-4">
+                                    <div class="font-size-x d-flex justify-content-between mt-4">
                                         <asp:Label ID="lblMsg" runat="server"></asp:Label>
                                     </div>
                                 </div>

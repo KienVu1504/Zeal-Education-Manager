@@ -36,14 +36,14 @@ $(function () {
         var lat = crd.latitude.toString();
         var lng = crd.longitude.toString();
         var coordinates = [lat, lng];
+
         console.log(x);
         getCity(coordinates);
         return;
-
     }
 
     function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
+        x.innerHTML = err.message;
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
@@ -53,6 +53,7 @@ function getCity(coordinates) {
     var xhr = new XMLHttpRequest();
     var lat = coordinates[0];
     var lng = coordinates[1];
+
     xhr.open('GET', "https://us1.locationiq.com/v1/reverse.php?key=pk.686fc1c555414bc569b4d3a02be52e2b&lat=" + lat + "&lon=" + lng + "&format=json", true);
     xhr.send();
     xhr.onreadystatechange = processRequest;
@@ -63,6 +64,7 @@ function getCity(coordinates) {
             var response = JSON.parse(xhr.responseText);
             var city = response.address.city;
             var country = response.address.country;
+
             x.innerHTML = city + ", " + country;
             return;
         }

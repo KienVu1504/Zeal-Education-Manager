@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>School Management System</title>
+    <title>Zeal Education Manager</title>
     <meta charset="utf-8"/>
 
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />

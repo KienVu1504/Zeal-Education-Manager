@@ -382,6 +382,11 @@ table a:hover{
     font-size: 18px;
 }
 
+.font-size-x span{
+    font-size: x-large;
+    font-weight: bold;
+}
+
 @media (max-width: 1024px) {
     .sidebar_inner {
         left: -115%;
@@ -416,6 +421,13 @@ table a:hover{
         opacity: 0.7;
     }
 }
+
+@media (max-width: 576px){
+    .container{
+        padding-top: 1.5rem;
+    }
+}
+
 
 @media (max-width: 528px) {
     .content .item {

@@ -50,6 +50,5 @@ namespace ZealEducationManager.Admin
             DataTable dt = fn.Fletch("select count(*) from Subject");
             Session["subject"] = dt.Rows[0][0];
         }
-
     }
 }

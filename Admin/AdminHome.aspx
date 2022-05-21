@@ -19,14 +19,22 @@
             <div class="row pt-5">
                 <div class="col-md-3">
                     <div class="card-counter primary">
-                        <i class="fas fa-user-graduate"></i>
-                        <span class="count-numbers"><%Response.Write(Session["student"]); %></span>
-                        <span class="count-name">Total Students</span>
+                        <i class="fas fa-building"></i>
+                        <span class="count-numbers"><%Response.Write(Session["class"]); %></span>
+                        <span class="count-name">Total Classes</span>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="card-counter danger">
+                        <i class="fas fa-book"></i>
+                        <span class="count-numbers"><%Response.Write(Session["subject"]); %></span>
+                        <span class="count-name">Total Subjects</span>
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="card-counter danger">
+                    <div class="card-counter success">
                         <i class="fas fa-chalkboard-teacher"></i>
                         <span class="count-numbers"><%Response.Write(Session["teacher"]); %></span>
                         <span class="count-name">Total Teachers</span>
@@ -34,18 +42,10 @@
                 </div>
 
                 <div class="col-md-3">
-                    <div class="card-counter success">
-                        <i class="fas fa-building"></i>
-                        <span class="count-numbers"><%Response.Write(Session["class"]); %></span>
-                        <span class="count-name">Total Classes</span>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
                     <div class="card-counter info">
-                        <i class="fas fa-book"></i>
-                        <span class="count-numbers"><%Response.Write(Session["subject"]); %></span>
-                        <span class="count-name">Total Subjects</span>
+                        <i class="fas fa-user-graduate"></i>
+                        <span class="count-numbers"><%Response.Write(Session["student"]); %></span>
+                        <span class="count-name">Total Students</span>
                     </div>
                 </div>
             </div>

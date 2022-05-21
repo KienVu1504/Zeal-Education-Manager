@@ -14,7 +14,6 @@
     <script src="../Scripts/jquery-3.6.0.min.js"></script>
     <script src="../Scripts/umd/popper.min.js"></script>
     <script src="../Scripts/bootstrap.min.js"></script>
-    <script src="../Content/script.js"></script>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -252,5 +251,7 @@
             </div>
         </div>
     </form>
+
+    <script src="../Content/script.js"></script>
 </body>
 </html>

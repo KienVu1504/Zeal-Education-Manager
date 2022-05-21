@@ -114,3 +114,7 @@ select StudentId, RollNo, Name, Mobile from Student
 select ROW_NUMBER() over(order by (select 1)) as [Sr.No], s.Name, sa.Status, sa.Date from StudentAttendance sa inner join Student s on s.RollNo = sa.RollNo 
                                 where sa.ClassId = '" + ddlClass.SelectedValue + "' and sa.RollNo = '" + txtRollNo.Text.Trim() + "' and DATEPART(yy, Date) = '" + date.Year + "' and DATEPART(M, Date) = '" + date.Month + "' " +
                                 "and sa.Status = 1
+
+select count(*) from Student
+
+select * from Teacher where Email = 'kvstudio.154@gmail.com' and password = 'ghf'

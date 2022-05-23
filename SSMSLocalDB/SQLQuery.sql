@@ -118,3 +118,19 @@ select ROW_NUMBER() over(order by (select 1)) as [Sr.No], s.Name, sa.Status, sa.
 select count(*) from Student
 
 select * from Teacher where Email = 'kvstudio.154@gmail.com' and password = 'ghf'
+
+select * from Exam where ClassId = 1
+
+select * from Expense where ClassId = 1
+
+select * from Fees where ClassId = 1
+
+select * from Student where ClassId = 1
+
+select * from StudentAttendance where ClassId = 1
+
+select * from Subject where ClassId = 1
+
+select * from TeacherSubject where ClassId = 1
+
+Select * from Class where ClassName = 'Class First'

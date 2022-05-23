@@ -8,19 +8,21 @@
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
 
-            <h2 class="text-center">New Class</h2>
+            <h2 class="text-center">New class</h2>
+            <h6 style="color:red">Note: There is a bug with the index data that makes the page random change to another page when you press the edit or delete button (Edit & Delete still work normally when you come back to the page where you 
+                press it)</h6>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5 mt-md-5">
                 <div class="col-md-12">
-                    <label class="label-font-size" for="txtClass">Class Name</label>
+                    <label class="label-font-size" for="txtClass">Class name</label>
 
-                    <asp:TextBox ID="txtClass" runat="server" CssClass="form-control" placeholder="Enter Class Name" required></asp:TextBox>
+                    <asp:TextBox ID="txtClass" runat="server" CssClass="form-control" placeholder="Enter class name" required AutoCompleteType="Disabled" MaxLength="50"></asp:TextBox>
                 </div>
             </div>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                 <div class="col-md-12 col-md-offset-2 mb-3">
-                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 col-sm-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add Class" OnClick="btnAdd_Click" />
+                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 col-sm-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add class" OnClick="btnAdd_Click" />
                 </div>                
             </div>
 
@@ -36,7 +38,7 @@
 
                             <asp:TemplateField HeaderText="Class">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txtClassEdit" runat="server" Text='<%# Eval("ClassName") %>' CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="txtClassEdit" runat="server" Text='<%# Eval("ClassName") %>' CssClass="form-control" MaxLength="50"></asp:TextBox>
                                 </EditItemTemplate>
 
                                 <ItemTemplate>

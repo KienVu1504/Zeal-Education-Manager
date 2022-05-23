@@ -70,14 +70,14 @@
                                 <li>
                                     <a href="../Admin/AddClass.aspx" class="active">
                                         <i class="fas fa-user-plus pr-1"></i>
-                                        Add Class
+                                        Add class
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="../Admin/ClassFees.aspx" class="active">
                                         <i class="fas fa-money-bill-alt pr-1"></i>
-                                        Class Fees
+                                        Class fees
                                     </a>
                                 </li>
                             </ul>
@@ -110,28 +110,28 @@
                                 <li>
                                     <a href="../Admin/Teacher.aspx" class="active">
                                         <i class="fas fa-user-plus pr-1"></i>
-                                        Add Teachers
+                                        Add teachers
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="../Admin/TeacherSubject.aspx" class="active">
                                         <i class="fas fa-book-reader pr-1"></i>
-                                        Teachers Subject
+                                        Teachers subject
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="../Admin/Expense.aspx" class="active">
                                         <i class="fas fa-hand-holding-usd pr-1"></i>
-                                        Add Expense
+                                        Add expense
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="../Admin/ExpenseDetails.aspx" class="active">
                                         <i class="fas fa-money-check-alt pr-1"></i>
-                                        Expense Details
+                                        Expense details
                                     </a>
                                 </li>
                             </ul>
@@ -154,14 +154,14 @@
                                 <li>
                                     <a href="../Admin/Student.aspx" class="active">
                                         <i class="fas fa-users pr-1"></i>
-                                        Add Students
+                                        Add students
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="../Admin/StudentAttendanceDetails.aspx" class="active">
                                         <i class="far fa-list-alt pr-1"></i>
-                                        Attendance Details
+                                        Attendance details
                                     </a>
                                 </li>
                             </ul>
@@ -184,14 +184,14 @@
                                 <li>
                                     <a href="../Admin/Marks.aspx" class="active">
                                         <i class="fas fa-notes-medical pr-1"></i>
-                                        Add Marks
+                                        Add marks
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="../Admin/MarkDetails.aspx" class="active">
                                         <i class="fas fa-clipboard-check pr-1"></i>
-                                        Marks Details
+                                        Marks details
                                     </a>
                                 </li>
                             </ul>
@@ -214,14 +214,14 @@
                                 <li>
                                     <a href="../Admin/EmployeeAttendance.aspx" class="active">
                                         <i class="fas fa-calendar-plus pr-1"></i>
-                                        Employee Attendance
+                                        Employee attendance
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="../Admin/EmpAttendanceDetails.aspx" class="active">
                                         <i class="fas fa-calendar-check pr-1"></i>
-                                        Employee Details
+                                        Employee details
                                     </a>
                                 </li>
                             </ul>

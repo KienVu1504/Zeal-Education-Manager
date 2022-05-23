@@ -13,7 +13,7 @@
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
 
-            <h2 class="text-center">Admin Home Page</h2>
+            <h2 class="text-center">Admin home page</h2>
         </div>
 
         <div class="container">
@@ -22,7 +22,7 @@
                     <div class="card-counter primary">
                         <i class="fas fa-building"></i>
                         <span class="count-numbers"><%Response.Write(Session["class"]); %></span>
-                        <span class="count-name">Total Classes</span>
+                        <span class="count-name">Total classes</span>
                     </div>
                 </div>
                 
@@ -30,7 +30,7 @@
                     <div class="card-counter danger">
                         <i class="fas fa-book"></i>
                         <span class="count-numbers"><%Response.Write(Session["subject"]); %></span>
-                        <span class="count-name">Total Subjects</span>
+                        <span class="count-name">Total subjects</span>
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@
                     <div class="card-counter success">
                         <i class="fas fa-chalkboard-teacher"></i>
                         <span class="count-numbers"><%Response.Write(Session["teacher"]); %></span>
-                        <span class="count-name">Total Teachers</span>
+                        <span class="count-name">Total teachers</span>
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@
                     <div class="card-counter info">
                         <i class="fas fa-user-graduate"></i>
                         <span class="count-numbers"><%Response.Write(Session["student"]); %></span>
-                        <span class="count-name">Total Students</span>
+                        <span class="count-name">Total students</span>
                     </div>
                 </div>
             </div>

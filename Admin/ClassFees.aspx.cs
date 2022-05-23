@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using static ZealEducationManager.Models.CommonFn;
 
@@ -39,15 +35,29 @@ namespace ZealEducationManager.Admin
             {
                 string classVal = ddlClass.SelectedItem.Text;
                 DataTable dt = fn.Fletch("Select * from Fees where ClassId = '" + ddlClass.SelectedItem.Value + "'");
+                long feeAmount = Convert.ToInt64(txtFeeAmounts.Text.Trim());
                 if (dt.Rows.Count == 0)
                 {
-                    string query = "Insert into Fees values('" + ddlClass.SelectedItem.Value + "','" + txtFeeAmounts.Text.Trim() + "')";
-                    fn.Query(query);
-                    lblMsg.Text = "Inserted Successfully!";
-                    lblMsg.CssClass = "alert alert-success";
-                    ddlClass.SelectedIndex = 0;
-                    txtFeeAmounts.Text = string.Empty;
-                    GetFees();
+                    if (feeAmount > 999999999)
+                    {
+                        lblMsg.Text = "Fee must be <= 999999999!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+                    else if (feeAmount < 0)
+                    {
+                        lblMsg.Text = "Fee must be >= 0!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+                    else
+                    {
+                        string query = "Insert into Fees values('" + ddlClass.SelectedItem.Value + "','" + txtFeeAmounts.Text.Trim() + "')";
+                        fn.Query(query);
+                        lblMsg.Text = "Inserted Successfully!";
+                        lblMsg.CssClass = "alert alert-success";
+                        ddlClass.SelectedIndex = 0;
+                        txtFeeAmounts.Text = string.Empty;
+                        GetFees();
+                    }
                 }
                 else
                 {
@@ -57,7 +67,8 @@ namespace ZealEducationManager.Admin
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -92,7 +103,8 @@ namespace ZealEducationManager.Admin
                 GetFees();
             } catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "');</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -108,15 +120,38 @@ namespace ZealEducationManager.Admin
             {
                 GridViewRow row = GridView1.Rows[e.RowIndex];
                 int feeId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-                string feeAmt = (row.FindControl("TextBox1") as TextBox).Text;
-                fn.Query("Update Fees set FeeAmount = '" + feeAmt.Trim() + "' where FeeId = '" + feeId + "'");
-                lblMsg.Text = "Fees Updated Successfully!";
-                lblMsg.CssClass = "alert alert-success";
-                GridView1.EditIndex = -1;
-                GetFees();
+                string feeAmt = (row.FindControl("TextBox1") as TextBox).Text.Trim();
+                if (feeAmt == null || feeAmt == "")
+                {
+                    lblMsg.Text = "Please enter fee amount!";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                else
+                {
+                    long feeAtmCheck = Convert.ToInt64(feeAmt);
+                    if (feeAtmCheck > 999999999)
+                    {
+                        lblMsg.Text = "Fee must be <= 999999999!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+                    else if (feeAtmCheck < 0)
+                    {
+                        lblMsg.Text = "Fee must be >= 0!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+                    else
+                    {
+                        fn.Query("Update Fees set FeeAmount = '" + feeAmt.Trim() + "' where FeeId = '" + feeId + "'");
+                        lblMsg.Text = "Fees Updated Successfully!";
+                        lblMsg.CssClass = "alert alert-success";
+                        GridView1.EditIndex = -1;
+                        GetFees();
+                    }
+                }
             } catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
     }

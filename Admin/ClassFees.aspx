@@ -8,7 +8,7 @@
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
 
-            <h2 class="text-center">New Fees</h2>
+            <h2 class="text-center">New fees</h2>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5 mt-md-5">
                 <div class="col-md-6">
@@ -21,15 +21,15 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="txtFeeAmounts" class="label-font-size" >Fees(Annual)</label>
+                    <label for="txtFeeAmounts" class="label-font-size" >Fees(per day)</label>
 
-                    <asp:TextBox ID="txtFeeAmounts" runat="server" CssClass="form-control" placeholder="Enter Fees Amount" TextMode="Number" required></asp:TextBox>
+                    <asp:TextBox ID="txtFeeAmounts" runat="server" CssClass="form-control" placeholder="Enter fees amount" TextMode="Number" required MaxLength="12"></asp:TextBox>
                 </div>
             </div>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                 <div class="col-md-12 col-md-offset-2 mb-3">
-                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 col-sm-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add Class" OnClick="btnAdd_Click" />
+                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 col-sm-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add class" OnClick="btnAdd_Click" />
                 </div>                
             </div>
 
@@ -47,9 +47,9 @@
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:BoundField>
 
-                            <asp:TemplateField HeaderText="Fees(Annual)">
+                            <asp:TemplateField HeaderText="Fees(per day)">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("FeeAmount") %>' CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("FeeAmount") %>' TextMode="Number" CssClass="form-control"></asp:TextBox>
                                 </EditItemTemplate>
 
                                 <ItemTemplate>

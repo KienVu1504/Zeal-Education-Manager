@@ -80,6 +80,12 @@ Create table Expense(
 	ChargeAmount int null
 )
 
+
+
+/*-----------------------------------------------------------------------------------------------------------------------*/
+
+
+
 Select Row_NUMBER() over(Order by (Select 1)) as [Sr.No], ClassId, ClassName from Class
 
 select * from Class
@@ -131,6 +137,8 @@ select * from StudentAttendance where ClassId = 1
 
 select * from Subject where ClassId = 1
 
-select * from TeacherSubject where ClassId = 1
+select * from TeacherSubject where SubjectId = 1 
 
 Select * from Class where ClassName = 'Class First'
+
+select  * from Subject where ClassId = 1004 and SubjectName = 'css'

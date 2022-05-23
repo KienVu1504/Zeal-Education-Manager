@@ -8,7 +8,7 @@
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
 
-            <h2 class="text-center">New Subject</h2>
+            <h2 class="text-center">New subject</h2>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5 mt-md-5">
                 <div class="col-md-6">
@@ -16,20 +16,20 @@
 
                     <asp:DropDownList ID="ddlClass" runat="server" CssClass="form-control"></asp:DropDownList>
 
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Class is required" ControlToValidate="ddlClass" Display="Dynamic" ForeColor="Red" InitialValue="Select Class" 
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Class is required" ControlToValidate="ddlClass" Display="Dynamic" ForeColor="Red" InitialValue="Select class" 
                         SetFocusOnError="True"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="col-md-6">
                     <label for="txtSubject" class="label-font-size" >Subject</label>
 
-                    <asp:TextBox ID="txtSubject" runat="server" CssClass="form-control" placeholder="Enter Subject" required></asp:TextBox>
+                    <asp:TextBox ID="txtSubject" runat="server" CssClass="form-control" placeholder="Enter subject" required MaxLength="50"></asp:TextBox>
                 </div>
             </div>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                 <div class="col-md-12 col-md-offset-2 mb-3">
-                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 col-sm-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add Subject" OnClick="btnAdd_Click" />
+                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 col-sm-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add subject" OnClick="btnAdd_Click" />
                 </div>                
             </div>
 
@@ -58,7 +58,7 @@
 
                             <asp:TemplateField HeaderText="Subject">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("SubjectName") %>' CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("SubjectName") %>' CssClass="form-control" MaxLength="50"></asp:TextBox>
                                 </EditItemTemplate>
 
                                 <ItemTemplate>

@@ -9,8 +9,8 @@
             </div>
 
             <h2 class="text-center">New class</h2>
-            <h6 style="color:red">Note: There is a bug with the index data that makes the page random change to another page when you press the edit or delete button (Edit & Delete still work normally when you come back to the page where you 
-                press it)</h6>
+            <h6 style="color:red">There is a bug with the index data that makes the page random change to another page when you press the edit or delete button. (Edit & Delete still work normally when you come back to the page 
+                where you pressed it)</h6>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5 mt-md-5">
                 <div class="col-md-12">

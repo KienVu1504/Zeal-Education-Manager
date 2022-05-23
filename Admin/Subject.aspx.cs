@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using static ZealEducationManager.Models.CommonFn;
 
@@ -31,7 +27,7 @@ namespace ZealEducationManager.Admin
             ddlClass.DataTextField = "ClassName";
             ddlClass.DataValueField = "ClassId";
             ddlClass.DataBind();
-            ddlClass.Items.Insert(0, "Select Class");
+            ddlClass.Items.Insert(0, "Select class");
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
@@ -41,23 +37,32 @@ namespace ZealEducationManager.Admin
                 DataTable dt = fn.Fletch("Select * from Subject where ClassId = '" + ddlClass.SelectedItem.Value + "' and SubjectName = '" + txtSubject.Text.Trim() + "'");
                 if (dt.Rows.Count == 0)
                 {
-                    string query = "Insert into Subject values('" + ddlClass.SelectedItem.Value + "','" + txtSubject.Text.Trim() + "')";
-                    fn.Query(query);
-                    lblMsg.Text = "Inserted Successfully!";
-                    lblMsg.CssClass = "alert alert-success";
-                    ddlClass.SelectedIndex = 0;
-                    txtSubject.Text = string.Empty;
-                    GetSubject();
+                    if (txtSubject.Text.Trim() == null || txtSubject.Text.Trim() == "")
+                    {
+                        lblMsg.Text = "Please enter a valid subject name!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    } 
+                    else
+                    {
+                        string query = "Insert into Subject values('" + ddlClass.SelectedItem.Value + "','" + txtSubject.Text.Trim() + "')";
+                        fn.Query(query);
+                        lblMsg.Text = "Inserted successfully!";
+                        lblMsg.CssClass = "alert alert-success";
+                        ddlClass.SelectedIndex = 0;
+                        txtSubject.Text = string.Empty;
+                        GetSubject();
+                    }
                 }
                 else
                 {
-                    lblMsg.Text = "Entered Subject already exists for <b>'" + classVal + "'</b>!";
+                    lblMsg.Text = "Entered subject already exists for <b>'" + classVal + "'</b>!";
                     lblMsg.CssClass = "alert alert-danger";
                 }
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -93,16 +98,35 @@ namespace ZealEducationManager.Admin
                 GridViewRow row = GridView1.Rows[e.RowIndex];
                 int subjId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
                 string classId = ((DropDownList)GridView1.Rows[e.RowIndex].Cells[2].FindControl("DropDownlist1")).SelectedValue;
-                string subjName = (row.FindControl("TextBox1") as TextBox).Text;
-                fn.Query("Update Subject set ClassId = '" + classId + "', SubjectName = '" + subjName + "' where SubjectId = '" + subjId + "'");
-                lblMsg.Text = "Subject Updated Successfully!";
-                lblMsg.CssClass = "alert alert-success";
-                GridView1.EditIndex = -1;
-                GetSubject();
+                string ddlClass = ((DropDownList)GridView1.Rows[e.RowIndex].Cells[2].FindControl("DropDownlist1")).SelectedItem.Text;
+                string subjName = (row.FindControl("TextBox1") as TextBox).Text.Trim();
+                DataTable classCheck = fn.Fletch("select  * from Subject where ClassId = '" + classId + "' and SubjectName = '" + subjName + "'");
+                if (classCheck.Rows.Count != 0)
+                {
+                    lblMsg.Text = "Entered subject already exists for <b>'" + ddlClass + "'</b>!";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                else
+                {
+                    if (subjName == null || subjName == "")
+                    {
+                        lblMsg.Text = "Please enter a valid subject name!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+                    else
+                    {
+                        fn.Query("Update Subject set ClassId = '" + classId + "', SubjectName = '" + subjName + "' where SubjectId = '" + subjId + "'");
+                        lblMsg.Text = "Subject updated successfully!";
+                        lblMsg.CssClass = "alert alert-success";
+                        GridView1.EditIndex = -1;
+                        GetSubject();
+                    }
+                }
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -111,15 +135,28 @@ namespace ZealEducationManager.Admin
             try
             {
                 int subsId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-                fn.Query("Delete from Subject where SubjectId = '" + subsId + "'");
-                lblMsg.Text = "Subject Deleted Successfully!";
-                lblMsg.CssClass = "alert alert-success";
-                GridView1.EditIndex = -1;
-                GetSubject();
+                DataTable examCheck = fn.Fletch("select * from Exam where SubjectId = '" + subsId + "'");
+                DataTable teacherSubjectCheck = fn.Fletch("select * from TeacherSubject where SubjectId = '" + subsId + "'");
+                DataTable expenseCheck = fn.Fletch("select * from Expense where SubjectId = '" + subsId + "'");
+                DataTable studentAttendanceCheck = fn.Fletch("select * from StudentAttendance where SubjectId = '" + subsId + "'");
+                if (examCheck.Rows.Count != 0 || teacherSubjectCheck.Rows.Count != 0 || expenseCheck.Rows.Count != 0 || studentAttendanceCheck.Rows.Count != 0)
+                {
+                    lblMsg.Text = "You can only delete subject that contain no data!";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                else
+                {
+                    fn.Query("Delete from Subject where SubjectId = '" + subsId + "'");
+                    lblMsg.Text = "Subject deleted successfully!";
+                    lblMsg.CssClass = "alert alert-success";
+                    GridView1.EditIndex = -1;
+                    GetSubject();
+                }
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "');</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
     }

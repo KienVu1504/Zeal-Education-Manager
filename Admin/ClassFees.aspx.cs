@@ -27,7 +27,7 @@ namespace ZealEducationManager.Admin
             ddlClass.DataTextField = "ClassName";
             ddlClass.DataValueField = "ClassId";
             ddlClass.DataBind();
-            ddlClass.Items.Insert(0, "Select Class");
+            ddlClass.Items.Insert(0, "Select class");
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
@@ -52,7 +52,7 @@ namespace ZealEducationManager.Admin
                     {
                         string query = "Insert into Fees values('" + ddlClass.SelectedItem.Value + "','" + txtFeeAmounts.Text.Trim() + "')";
                         fn.Query(query);
-                        lblMsg.Text = "Inserted Successfully!";
+                        lblMsg.Text = "Inserted successfully!";
                         lblMsg.CssClass = "alert alert-success";
                         ddlClass.SelectedIndex = 0;
                         txtFeeAmounts.Text = string.Empty;
@@ -61,7 +61,7 @@ namespace ZealEducationManager.Admin
                 }
                 else
                 {
-                    lblMsg.Text = "Entered Fees already exists for <b>'" + classVal + "'</b>!";
+                    lblMsg.Text = "Entered fees already exists for <b>'" + classVal + "'</b>!";
                     lblMsg.CssClass = "alert alert-danger";
                 }
             }
@@ -97,7 +97,7 @@ namespace ZealEducationManager.Admin
             {
                 int feesId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
                 fn.Query("Delete from Fees where FeeId = '" + feesId + "'");
-                lblMsg.Text = "Fees Deleted Successfully!";
+                lblMsg.Text = "Fees deleted successfully!";
                 lblMsg.CssClass = "alert alert-success";
                 GridView1.EditIndex = -1;
                 GetFees();
@@ -142,7 +142,7 @@ namespace ZealEducationManager.Admin
                     else
                     {
                         fn.Query("Update Fees set FeeAmount = '" + feeAmt.Trim() + "' where FeeId = '" + feeId + "'");
-                        lblMsg.Text = "Fees Updated Successfully!";
+                        lblMsg.Text = "Fees updated successfully!";
                         lblMsg.CssClass = "alert alert-success";
                         GridView1.EditIndex = -1;
                         GetFees();

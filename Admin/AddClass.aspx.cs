@@ -42,14 +42,14 @@ namespace ZealEducationManager.Admin
                     {
                         string query = "Insert into Class values('" + txtClass.Text.Trim() + "')";
                         fn.Query(query);
-                        lblMsg.Text = "Inserted Successfully!";
+                        lblMsg.Text = "Inserted successfully!";
                         lblMsg.CssClass = "alert alert-success";
                         txtClass.Text = string.Empty;
                         GetClass();
                     }
                     else
                     {
-                        lblMsg.Text = "Entered Class already exists!";
+                        lblMsg.Text = "Entered class already exists!";
                         lblMsg.CssClass = "alert alert-danger";
                     }
                 }
@@ -100,13 +100,13 @@ namespace ZealEducationManager.Admin
                 } 
                 else if (dtCheck.Rows.Count != 0)
                 {
-                    lblMsg.Text = "Entered Class already exists!";
+                    lblMsg.Text = "Entered class already exists!";
                     lblMsg.CssClass = "alert alert-danger";
                 }
                 else
                 {
                     fn.Query("Update Class set ClassName = '" + ClassName + "' where ClassId = '" + cId + "'");
-                    lblMsg.Text = "Class Updated Successfully!";
+                    lblMsg.Text = "Class updated successfully!";
                     lblMsg.CssClass = "alert alert-success";
                     GridView1.EditIndex = -1;
                     GetClass();
@@ -139,7 +139,7 @@ namespace ZealEducationManager.Admin
                 else
                 {
                     fn.Query("Delete from Class where ClassId = '" + classId + "'");
-                    lblMsg.Text = "Class Deleted Successfully!";
+                    lblMsg.Text = "Class deleted successfully!";
                     lblMsg.CssClass = "alert alert-success";
                     GridView1.EditIndex = -1;
                     GetClass();

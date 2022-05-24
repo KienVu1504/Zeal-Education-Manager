@@ -8,7 +8,7 @@
                 <asp:Label ID="lblMsg" runat="server"></asp:Label>
             </div>
 
-            <h2 class="text-center">Add Expense</h2>
+            <h2 class="text-center">Add expense</h2>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5 mt-md-5">
                 <div class="col-md-6">
@@ -16,7 +16,7 @@
 
                     <asp:DropDownList ID="ddlClass" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlClass_SelectedIndexChanged"></asp:DropDownList>
 
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Class is required" ControlToValidate="ddlClass" Display="Dynamic" ForeColor="Red" InitialValue="Select Class" 
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Class is required" ControlToValidate="ddlClass" Display="Dynamic" ForeColor="Red" InitialValue="Select class" 
                         SetFocusOnError="True"></asp:RequiredFieldValidator>
                 </div>
 
@@ -25,20 +25,23 @@
 
                     <asp:DropDownList ID="ddlSubject" runat="server" CssClass="form-control"></asp:DropDownList>
 
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Subject is required" ControlToValidate="ddlSubject" Display="Dynamic" ForeColor="Red" InitialValue="Select Subject" 
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Subject is required" ControlToValidate="ddlSubject" Display="Dynamic" ForeColor="Red" InitialValue="Select subject" 
                         SetFocusOnError="True"></asp:RequiredFieldValidator>
                 </div>
 
                 <div class="col-md-6 mt-2">
-                    <label for="txtExpenseAmt" class="label-font-size" >Charge Amount(Per Lecture)</label>
+                    <label for="txtExpenseAmt" class="label-font-size" >Charge amount (Per lecture)</label>
                     
                     <asp:TextBox ID="txtExpenseAmt" runat="server" CssClass="form-control" placeholder="Enter Charge Amount" TextMode="Number" required></asp:TextBox>
+
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Invalid charge amount." ForeColor="Red" ValidationExpression="^[0-9]{1,10}" Display="Dynamic" 
+                        SetFocusOnError="true" ControlToValidate="txtExpenseAmt"></asp:RegularExpressionValidator>
                 </div>
             </div>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                 <div class="col-md-12 col-md-offset-2 mb-3">
-                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 col-sm-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add Expense" OnClick="btnAdd_Click"/>
+                    <asp:Button ID="btnAdd" runat="server" CssClass="col-md-12 col-sm-12 btn btn-primary btn-block btn-bg-gradiant" Text="Add expense" OnClick="btnAdd_Click"/>
                 </div>                
             </div>
 
@@ -49,7 +52,7 @@
                         OnRowUpdating="GridView1_RowUpdating" OnRowDeleting="GridView1_RowDeleting" OnRowDataBound="GridView1_RowDataBound">
                         <Columns>
                             <asp:BoundField DataField="Sr.No" HeaderText="Sr.No" ReadOnly="True">
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
 
                             <asp:TemplateField HeaderText="Class">
@@ -75,7 +78,7 @@
                                     <asp:Label ID="Label1" runat="server" Text='<%# Eval("SubjectName") %>'></asp:Label>
                                 </ItemTemplate>
 
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Charge Rs.(Per Lecture)">
@@ -89,13 +92,13 @@
                             </asp:TemplateField>
 
                             <asp:CommandField CausesValidation="false" HeaderText="Operation" ShowEditButton="True" ShowDeleteButton="True">
-                                <ItemStyle HorizontalAlign="Center" CssClass="Operation"/>
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Operation"/>
                             </asp:CommandField>
                         </Columns>
 
-                        <HeaderStyle HorizontalAlign = "Center" BackColor="#ac32e4" ForeColor="White"/>
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" BackColor="#ac32e4" ForeColor="White"/>
 
-                        <PagerStyle HorizontalAlign = "Center" CssClass = "GridPager" />
+                        <PagerStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass = "GridPager" />
                     </asp:GridView>
                 </div>
             </div>

@@ -17,32 +17,32 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="admin-home">
         <div class="container p-md-4 p-sm-4">
-            <h2 class="text-center">Expense Details</h2>
+            <h2 class="text-center">Expense details</h2>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
                 <div class="col-md-12">
                     <asp:GridView ID="GridView1" runat="server" CssClass="table-font-size-17-bold table table-hover table-bordered" EmptyDataText="No record to display" AutoGenerateColumns="False">
                         <Columns>
                             <asp:BoundField DataField="Sr.No" HeaderText="Sr.No">
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"/>
                             </asp:BoundField>
 
                             <asp:BoundField DataField="ClassName" HeaderText="Class">
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center"  VerticalAlign="Middle"/>
                             </asp:BoundField>
 
                             <asp:BoundField DataField="SubjectName" HeaderText="Subject">
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center"  VerticalAlign="Middle"/>
                             </asp:BoundField>
 
-                            <asp:BoundField DataField="ChargeAmount" HeaderText="Charge Amount(Per Lecture)">
-                                <ItemStyle HorizontalAlign="Center" />
+                            <asp:BoundField DataField="ChargeAmount" HeaderText="Charge amount (Per lecture)">
+                                <ItemStyle HorizontalAlign="Center"  VerticalAlign="Middle"/>
                             </asp:BoundField>
                         </Columns>
 
-                        <HeaderStyle HorizontalAlign = "Center" BackColor="#ac32e4" ForeColor="White"/>
+                        <HeaderStyle HorizontalAlign = "Center" VerticalAlign="Middle" BackColor="#ac32e4" ForeColor="White"/>
 
-                        <PagerStyle HorizontalAlign = "Center" CssClass = "GridPager" />
+                        <PagerStyle HorizontalAlign = "Center" VerticalAlign="Middle" CssClass = "GridPager" />
                     </asp:GridView>
                 </div>
             </div>

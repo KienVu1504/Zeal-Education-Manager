@@ -24,6 +24,9 @@
                     <label for="txtFeeAmounts" class="label-font-size" >Fees(per day)</label>
 
                     <asp:TextBox ID="txtFeeAmounts" runat="server" CssClass="form-control" placeholder="Enter fees amount" TextMode="Number" required MaxLength="12"></asp:TextBox>
+
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Invalid fee amount." ForeColor="Red" ValidationExpression="^[0-9]{1,10}" Display="Dynamic" 
+                        SetFocusOnError="true" ControlToValidate="txtFeeAmounts"></asp:RegularExpressionValidator>
                 </div>
             </div>
 

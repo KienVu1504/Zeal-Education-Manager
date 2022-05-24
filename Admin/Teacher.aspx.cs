@@ -106,7 +106,8 @@ namespace ZealEducationManager.Admin
                 }
             } catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -145,7 +146,8 @@ namespace ZealEducationManager.Admin
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "');</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -250,7 +252,8 @@ namespace ZealEducationManager.Admin
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
     }

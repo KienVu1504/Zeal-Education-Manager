@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using static ZealEducationManager.Models.CommonFn;
 
@@ -33,7 +29,7 @@ namespace ZealEducationManager.Admin
             ddlClass.DataTextField = "ClassName";
             ddlClass.DataValueField = "ClassId";
             ddlClass.DataBind();
-            ddlClass.Items.Insert(0, "Select Class");
+            ddlClass.Items.Insert(0, "Select class");
         }
 
         private void GetTeacher()
@@ -43,7 +39,7 @@ namespace ZealEducationManager.Admin
             ddlTeacher.DataTextField = "Name";
             ddlTeacher.DataValueField = "TeacherId";
             ddlTeacher.DataBind();
-            ddlTeacher.Items.Insert(0, "Select Teacher");
+            ddlTeacher.Items.Insert(0, "Select teacher");
         }
 
         private void GetTeacherSubject()
@@ -57,12 +53,20 @@ namespace ZealEducationManager.Admin
         protected void ddlClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             string classId = ddlClass.SelectedValue;
-            DataTable dt = fn.Fletch("Select * from Subject where ClassId = '" + classId + "'");
-            ddlSubject.DataSource = dt;
-            ddlSubject.DataTextField = "SubjectName";
-            ddlSubject.DataValueField = "SubjectId";
-            ddlSubject.DataBind();
-            ddlSubject.Items.Insert(0, "Select Subject");
+            if (classId != "Select class")
+            {
+                DataTable dt = fn.Fletch("Select * from Subject where ClassId = '" + classId + "'");
+                ddlSubject.DataSource = dt;
+                ddlSubject.DataTextField = "SubjectName";
+                ddlSubject.DataValueField = "SubjectId";
+                ddlSubject.DataBind();
+                ddlSubject.Items.Insert(0, "Select subject");
+            }
+            else
+            {
+                ddlTeacher.SelectedIndex = 0;
+                ddlSubject.SelectedIndex = 0;
+            }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -72,27 +76,36 @@ namespace ZealEducationManager.Admin
                 string classId = ddlClass.SelectedValue;
                 string subjectId = ddlSubject.SelectedValue;
                 string teacherId = ddlTeacher.SelectedValue;
-                DataTable dt = fn.Fletch("Select * from TeacherSubject where ClassId = '" + classId + "' and SubjectId = '" + subjectId + "' or TeacherId = '" + teacherId + "'");
-                if (dt.Rows.Count == 0)
+                if (subjectId == "Select subject" || teacherId == "Select teacher")
                 {
-                    string query = "Insert into TeacherSubject values('" + classId + "','" + subjectId + "','" + teacherId + "')";
-                    fn.Query(query);
-                    lblMsg.Text = "Inserted Successfully!";
-                    lblMsg.CssClass = "alert alert-success";
-                    ddlClass.SelectedIndex = 0;
-                    ddlSubject.SelectedIndex = 0;
-                    ddlTeacher.SelectedIndex = 0;
-                    GetTeacherSubject();
+                    lblMsg.Text = "Please select teacher and subject!";
+                    lblMsg.CssClass = "alert alert-danger";
                 }
                 else
                 {
-                    lblMsg.Text = "Entered <b>teacher subject</b> already exists!";
-                    lblMsg.CssClass = "alert alert-danger";
+                    DataTable dt = fn.Fletch("Select * from TeacherSubject where ClassId = '" + classId + "' and SubjectId = '" + subjectId + "' and TeacherId = '" + teacherId + "'");
+                    if (dt.Rows.Count == 0)
+                    {
+                        string query = "Insert into TeacherSubject values('" + classId + "','" + subjectId + "','" + teacherId + "')";
+                        fn.Query(query);
+                        lblMsg.Text = "Inserted successfully!";
+                        lblMsg.CssClass = "alert alert-success";
+                        ddlClass.SelectedIndex = 0;
+                        ddlSubject.SelectedIndex = 0;
+                        ddlTeacher.SelectedIndex = 0;
+                        GetTeacherSubject();
+                    }
+                    else
+                    {
+                        lblMsg.Text = "Entered data already exists!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -114,14 +127,15 @@ namespace ZealEducationManager.Admin
             {
                 int teacherSubjectId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
                 fn.Query("Delete from TeacherSubject where Id = '" + teacherSubjectId + "'");
-                lblMsg.Text = "Teacher Subject Deleted Successfully!";
+                lblMsg.Text = "Teacher subject deleted successfully!";
                 lblMsg.CssClass = "alert alert-success";
                 GridView1.EditIndex = -1;
                 GetTeacherSubject();
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "');</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -140,15 +154,33 @@ namespace ZealEducationManager.Admin
                 string classId = ((DropDownList)GridView1.Rows[e.RowIndex].Cells[2].FindControl("ddlClassGv")).SelectedValue;
                 string subjectId = ((DropDownList)GridView1.Rows[e.RowIndex].Cells[2].FindControl("ddlSubjectGv")).SelectedValue;
                 string teacherId = ((DropDownList)GridView1.Rows[e.RowIndex].Cells[2].FindControl("ddlTeacherGv")).SelectedValue;
-                fn.Query(@"Update TeacherSubject set ClassId = '" + classId + "', SubjectId = '" + subjectId + "', TeacherId = '" + teacherId + "' where Id = '" + teacherSubjectId + "'");
-                lblMsg.Text = "Record Updated Successfully!";
-                lblMsg.CssClass = "alert alert-success";
-                GridView1.EditIndex = -1;
-                GetTeacherSubject();
+                if (subjectId == "Select subject" || subjectId == "" || subjectId == null)
+                {
+                    lblMsg.Text = "Please select subject!";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                else
+                {
+                    DataTable dataCheck = fn.Fletch("select * from TeacherSubject where ClassId = '" + classId + "' and SubjectId = '" + subjectId + "' and TeacherId = '" + teacherId + "'");
+                    if (dataCheck.Rows.Count != 0)
+                    {
+                        lblMsg.Text = "Entered data already exists!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+                    else
+                    {
+                        fn.Query(@"Update TeacherSubject set ClassId = '" + classId + "', SubjectId = '" + subjectId + "', TeacherId = '" + teacherId + "' where Id = '" + teacherSubjectId + "'");
+                        lblMsg.Text = "Record updated successfully!";
+                        lblMsg.CssClass = "alert alert-success";
+                        GridView1.EditIndex = -1;
+                        GetTeacherSubject();
+                    }
+                }
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -183,7 +215,7 @@ namespace ZealEducationManager.Admin
                     ddlSubject.DataTextField = "SubjectName";
                     ddlSubject.DataValueField = "SubjectId";
                     ddlSubject.DataBind();
-                    ddlSubject.Items.Insert(0, "select Subject");
+                    ddlSubject.Items.Insert(0, "Select subject");
                     string teacherSubjectId = GridView1.DataKeys[e.Row.RowIndex].Value.ToString();
                     DataTable dataTable = fn.Fletch(@"select ts.Id, ts.ClassId, ts.SubjectId, s.SubjectName from TeacherSubject ts inner join Subject s on ts.SubjectId = s.SubjectId where ts.Id = '" + teacherSubjectId + "'");
                     ddlSubject.SelectedValue = dataTable.Rows[0]["SubjectId"].ToString();

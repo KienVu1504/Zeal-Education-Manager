@@ -146,3 +146,7 @@ Select * from Class where ClassName = 'Class First'
 select  * from Subject where ClassId = 1004 and SubjectName = 'css'
 
 select * from Teacher where Name = 'fgdfg'
+
+select * from TeacherSubject where ClassId = 1 and SubjectId = 3 and TeacherId = 2
+
+select * from Expense where ClassId = 1 and SubjectId = 3

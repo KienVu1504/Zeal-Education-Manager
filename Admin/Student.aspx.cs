@@ -71,7 +71,7 @@ namespace ZealEducationManager.Admin
                                     }
                                     else
                                     {
-                                        DataTable dt = fn.Fletch("Select * from Student where ClassId = '" + ddlClass.SelectedValue + "' and RollNo = '" + rollNo + "'");
+                                        DataTable dt = fn.Fletch("Select * from Student where RollNo = '" + rollNo + "'");
                                         if (dt.Rows.Count == 0)
                                         {
                                             string query = "Insert into Student values ('" + txtName.Text.Trim() + "', '" + txtDoB.Text.Trim() + "', '" + ddlGender.Text.Trim() + "', '" + txtMobile.Text.Trim() + "'," +
@@ -90,7 +90,7 @@ namespace ZealEducationManager.Admin
                                         }
                                         else
                                         {
-                                            lblMsg.Text = "Entered roll no. <b>'" + rollNo + "'</b> already exist for selected class!";
+                                            lblMsg.Text = "Entered roll no. <b>'" + rollNo + "'</b> already exist!";
                                             lblMsg.CssClass = "alert alert-danger";
                                         }
                                     }
@@ -154,12 +154,52 @@ namespace ZealEducationManager.Admin
                 string rollNo = (row.FindControl("txtRollNo") as TextBox).Text;
                 string address = (row.FindControl("txtAddress") as TextBox).Text;
                 string classId = ((DropDownList)GridView1.Rows[e.RowIndex].Cells[4].FindControl("ddlClass")).SelectedValue;
-                fn.Query("Update Student set Name = '" + name.Trim() + "', Mobile = '" + mobile.Trim() + "', Address = '" + address.Trim() + "', RollNo = '" + rollNo.Trim() + "', ClassId = '" + classId + "'" +
-                        " where StudentId = '" + studentId + "'");
-                lblMsg.Text = "Student updated successfully!";
-                lblMsg.CssClass = "alert alert-success";
-                GridView1.EditIndex = -1;
-                GetStudents();
+                if (name.Trim() == null || name.Trim() == "")
+                {
+                    lblMsg.Text = "Please enter a valid name!";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                else
+                {
+                    if (Convert.ToString(Convert.ToInt64(mobile.Trim())).Length != 10)
+                    {
+                        lblMsg.Text = "Please enter a valid phone number!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+                    else
+                    {
+                        if (rollNo.Trim() == null || rollNo.Trim() == "")
+                        {
+                            lblMsg.Text = "Please enter a valid roll number!";
+                            lblMsg.CssClass = "alert alert-danger";
+                        }
+                        else
+                        {
+                            if (address.Trim() == null || address.Trim() == "")
+                            {
+                                lblMsg.Text = "Please enter a valid address!";
+                                lblMsg.CssClass = "alert alert-danger";
+                            }
+                            else
+                            {
+                                DataTable dataCheck = fn.Fletch("select * from Student where RollNo = '" + rollNo.Trim() + "'");
+                                if (dataCheck.Rows.Count != 0)
+                                {
+                                    lblMsg.Text = "Entered data already exist!";
+                                    lblMsg.CssClass = "alert alert-danger";
+                                }
+                                else
+                                {
+                                    fn.Query("Update Student set Name = '" + name.Trim() + "', Mobile = '" + mobile.Trim() + "', Address = '" + address.Trim() + "', RollNo = '" + rollNo.Trim() + "', ClassId = '" + classId + "' where StudentId = '" + studentId + "'");
+                                    lblMsg.Text = "Student updated successfully!";
+                                    lblMsg.CssClass = "alert alert-success";
+                                    GridView1.EditIndex = -1;
+                                    GetStudents();
+                                }
+                            }
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {

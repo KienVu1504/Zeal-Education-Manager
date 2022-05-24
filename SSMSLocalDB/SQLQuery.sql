@@ -150,3 +150,10 @@ select * from Teacher where Name = 'fgdfg'
 select * from TeacherSubject where ClassId = 1 and SubjectId = 3 and TeacherId = 2
 
 select * from Expense where ClassId = 1 and SubjectId = 3
+
+select * from Student where RollNo = 'fghfg' and ClassId = 3
+
+select ROW_NUMBER() over(order by (select 1)) as [Sr.No], s.Name, sa.Status, sa.Date, s.ClassId from StudentAttendance sa inner join Student s on s.RollNo = sa.RollNo 
+                                where sa.ClassId = 3 and sa.RollNo = 'fghfg' and DATEPART(yy, Date) = 2022 and DATEPART(M, Date) = 05
+
+select ROW_NUMBER() over(order by (select 1)) as [Sr.No],* from StudentAttendance

@@ -40,11 +40,11 @@
                         OnRowUpdating="GridView1_RowUpdating">
                         <Columns>
                             <asp:BoundField DataField="Sr.No" HeaderText="Sr.No" ReadOnly="True">
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
 
                             <asp:BoundField DataField="ClassName" HeaderText="Class" ReadOnly="True">
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
 
                             <asp:TemplateField HeaderText="Fees(per day)">
@@ -56,17 +56,17 @@
                                     <asp:Label ID="Label1" runat="server" Text='<%# Eval("FeeAmount") %>'></asp:Label>
                                 </ItemTemplate>
 
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
 
                             <asp:CommandField CausesValidation="false" HeaderText="Operation" ShowDeleteButton="True" ShowEditButton="True">
-                                <ItemStyle HorizontalAlign="Center" CssClass="Operation"/>
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass="Operation"/>
                             </asp:CommandField>
                         </Columns>
 
-                        <HeaderStyle HorizontalAlign = "Center" BackColor="#ac32e4" ForeColor="White"/>
+                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" BackColor="#ac32e4" ForeColor="White"/>
 
-                        <PagerStyle HorizontalAlign = "Center" CssClass = "GridPager" />
+                        <PagerStyle HorizontalAlign="Center" VerticalAlign="Middle" CssClass = "GridPager" />
                     </asp:GridView>
                 </div>
             </div>

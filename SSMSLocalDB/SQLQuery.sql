@@ -139,6 +139,10 @@ select * from Subject where ClassId = 1
 
 select * from TeacherSubject where SubjectId = 1 
 
+select * from TeacherAttendance where TeacherId = 2
+
 Select * from Class where ClassName = 'Class First'
 
 select  * from Subject where ClassId = 1004 and SubjectName = 'css'
+
+select * from Teacher where Name = 'fgdfg'

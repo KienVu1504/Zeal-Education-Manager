@@ -157,3 +157,17 @@ select ROW_NUMBER() over(order by (select 1)) as [Sr.No], s.Name, sa.Status, sa.
                                 where sa.ClassId = 3 and sa.RollNo = 'fghfg' and DATEPART(yy, Date) = 2022 and DATEPART(M, Date) = 05
 
 select ROW_NUMBER() over(order by (select 1)) as [Sr.No],* from StudentAttendance
+
+select * from Student s inner join Class c on s.ClassId = c.ClassId inner join Exam e on c.ClassId = e.ClassId
+
+select * from Exam e inner join Class c on e.ClassId = c.ClassId inner join Student s on c.ClassId = s.ClassId
+
+select * from Class c inner join Exam e on c.ClassId = e.ClassId inner join Student s on e.ClassId = s.ClassId
+
+select * from Class c inner join Student s on c.ClassId = s.ClassId inner join Exam e on c.ClassId = e.ClassId
+
+select * from Exam e inner join Class c on e.ClassId = c.ClassId inner join Subject s on e.SubjectId = s.SubjectId where e.ClassId = 3 and e.SubjectId = 1 and e.RollNo = 'eegegegeg32525'
+
+select * from Student where ClassId = 3 and RollNo = 'eegegegeg32525'
+
+select * from TeacherAttendance where TeacherId = 2 and Date = CAST(GETDATE() as date);

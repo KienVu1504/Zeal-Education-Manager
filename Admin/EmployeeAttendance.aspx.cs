@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using static ZealEducationManager.Models.CommonFn;
 
@@ -47,9 +43,18 @@ namespace ZealEducationManager.Admin
                 {
                     status = 0;
                 }
-                fn.Query("insert into TeacherAttendance values ('" + teacherId + "', '" + status + "', '" + DateTime.Now.ToString("yyyy/MM/dd") + "')");
-                lblMsg.Text = " Inserted Successfully!";
-                lblMsg.CssClass = "alert alert-success";
+                DataTable dataCheck = fn.Fletch("select * from TeacherAttendance where TeacherId = '" + teacherId + "' and Date = CAST(GETDATE() as date);");
+                if (dataCheck.Rows.Count != 0)
+                {
+                    lblMsg.Text = "You've already taken today's attendance!";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                else
+                {
+                    fn.Query("insert into TeacherAttendance values ('" + teacherId + "', '" + status + "', '" + DateTime.Now.ToString("yyyy/MM/dd") + "')");
+                    lblMsg.Text = " Inserted successfully!";
+                    lblMsg.CssClass = "alert alert-success";
+                }
             }
         }
 

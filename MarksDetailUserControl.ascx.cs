@@ -14,10 +14,6 @@ namespace ZealEducationManager
         Commonfnx fn = new Commonfnx();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Session["admin"] == null)
-            //{
-            //    Response.Redirect("../Login.aspx");
-            //}
             if (!IsPostBack)
             {
                 GetClass();
@@ -40,7 +36,7 @@ namespace ZealEducationManager
             ddlClass.DataTextField = "ClassName";
             ddlClass.DataValueField = "ClassId";
             ddlClass.DataBind();
-            ddlClass.Items.Insert(0, "Select Class");
+            ddlClass.Items.Insert(0, "Select class");
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -49,10 +45,26 @@ namespace ZealEducationManager
             {
                 string classId = ddlClass.SelectedValue;
                 string rollNo = txtRoll.Text.Trim();
-                DataTable dt = fn.Fletch(@"select ROW_NUMBER() over(order by (select 1)) as [Sr.No], e.ExamId, e.ClassId, c.ClassName, e.SubjectId, s.SubjectName, e.RollNo, e.TotalMarks, e.OutOfMarks 
+                if (classId == null || classId == "" || classId == "Select class")
+                {
+                    lblMsg.Text = "Please select class!";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                else
+                {
+                    if (rollNo == null || rollNo == "")
+                    {
+                        lblMsg.Text = "Please enter a valid roll number!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+                    else
+                    {
+                        DataTable dt = fn.Fletch(@"select ROW_NUMBER() over(order by (select 1)) as [Sr.No], e.ExamId, e.ClassId, c.ClassName, e.SubjectId, s.SubjectName, e.RollNo, e.TotalMarks, e.OutOfMarks 
                                         from Exam e inner join Class c on c.ClassId = e.ClassId inner join Subject s on s.SubjectId = e.SubjectId where e.ClassId = '" + classId + "' and e.RollNo = '" + rollNo + "'");
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
+                        GridView1.DataSource = dt;
+                        GridView1.DataBind();
+                    }
+                }
             }
             catch (Exception)
             {

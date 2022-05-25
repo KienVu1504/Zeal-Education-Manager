@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using static ZealEducationManager.Models.CommonFn;
 
 namespace ZealEducationManager.Admin
 {
-    public partial class Marks : System.Web.UI.Page
+    public partial class Marks : Page
     {
         Commonfnx fn = new Commonfnx();
         protected void Page_Load(object sender, EventArgs e)
@@ -40,18 +37,25 @@ namespace ZealEducationManager.Admin
             ddlClass.DataTextField = "ClassName";
             ddlClass.DataValueField = "ClassId";
             ddlClass.DataBind();
-            ddlClass.Items.Insert(0, "Select Class");
+            ddlClass.Items.Insert(0, "Select class");
         }
 
         protected void ddlClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             string classId = ddlClass.SelectedValue;
-            DataTable dt = fn.Fletch("Select * from Subject where ClassId = '" + classId + "'");
-            ddlSubject.DataSource = dt;
-            ddlSubject.DataTextField = "SubjectName";
-            ddlSubject.DataValueField = "SubjectId";
-            ddlSubject.DataBind();
-            ddlSubject.Items.Insert(0, "Select Subject");
+            if (classId == "Select class")
+            {
+                ddlSubject.SelectedIndex = 0;
+            }
+            else
+            {
+                DataTable dt = fn.Fletch("Select * from Subject where ClassId = '" + classId + "'");
+                ddlSubject.DataSource = dt;
+                ddlSubject.DataTextField = "SubjectName";
+                ddlSubject.DataValueField = "SubjectId";
+                ddlSubject.DataBind();
+                ddlSubject.Items.Insert(0, "Select subject");
+            }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -63,38 +67,95 @@ namespace ZealEducationManager.Admin
                 string rollNo = txtRoll.Text.Trim();
                 string studMarks = txtStudentMarks.Text.Trim();
                 string outOfMarks = txtOutOfMarks.Text.Trim();
-                DataTable dttbl = fn.Fletch("Select StudentId from Student where ClassId = '" + classId + "' and RollNo = '" + rollNo + "'");
-                if (dttbl.Rows.Count > 0)
+                if (subjectId == "" || subjectId == null || subjectId == "Select subject")
                 {
-                    DataTable dt = fn.Fletch("Select * from Exam where ClassId = '" + classId + "' and SubjectId = '" + subjectId + "' and RollNo = '" + rollNo + "'");
-                    if (dt.Rows.Count == 0)
-                    {
-                        string query = "Insert into Exam values('" + classId + "','" + subjectId + "','" + rollNo + "', '" + studMarks + "', '" + outOfMarks + "')";
-                        fn.Query(query);
-                        lblMsg.Text = "Inserted Successfully!";
-                        lblMsg.CssClass = "alert alert-success";
-                        ddlClass.SelectedIndex = 0;
-                        ddlSubject.SelectedIndex = 0;
-                        txtRoll.Text = String.Empty;
-                        txtStudentMarks.Text = String.Empty;
-                        txtOutOfMarks.Text = String.Empty;
-                        GetMarks();
-                    }
-                    else
-                    {
-                        lblMsg.Text = "Entered <b>Data</b> already exists!";
-                        lblMsg.CssClass = "alert alert-danger";
-                    }
+                    lblMsg.Text = "Please select subject!";
+                    lblMsg.CssClass = "alert alert-danger";
                 }
                 else
                 {
-                    lblMsg.Text = "Entered RollNo <b>" + rollNo + "</b> does not exist for selected Class!";
-                    lblMsg.CssClass = "alert alert-danger";
+                    if (rollNo == null || rollNo == "")
+                    {
+                        lblMsg.Text = "Please enter a valid roll number!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+                    else
+                    {
+                        if (studMarks.Length > 4)
+                        {
+                            lblMsg.Text = "Mark must be <= 1000!";
+                            lblMsg.CssClass = "alert alert-danger";
+                        }
+                        else
+                        {
+                            if (outOfMarks.Length > 4)
+                            {
+                                lblMsg.Text = "Mark must be <= 1000!";
+                                lblMsg.CssClass = "alert alert-danger";
+                            }
+                            else
+                            {
+                                if (Convert.ToInt16(studMarks) < 0)
+                                {
+                                    lblMsg.Text = "Please enter a valid mark!";
+                                    lblMsg.CssClass = "alert alert-danger";
+                                }
+                                else
+                                {
+                                    if (Convert.ToInt16(outOfMarks) < 0)
+                                    {
+                                        lblMsg.Text = "Please enter a valid mark!";
+                                        lblMsg.CssClass = "alert alert-danger";
+                                    }
+                                    else
+                                    {
+                                        if (Convert.ToInt16(studMarks) > Convert.ToInt16(outOfMarks))
+                                        {
+                                            lblMsg.Text = "Total mark must be <= Out of mark!";
+                                            lblMsg.CssClass = "alert alert-danger";
+                                        }
+                                        else
+                                        {
+                                            DataTable dttbl = fn.Fletch("Select StudentId from Student where ClassId = '" + classId + "' and RollNo = '" + rollNo + "'");
+                                            if (dttbl.Rows.Count > 0)
+                                            {
+                                                DataTable dt = fn.Fletch("Select * from Exam where ClassId = '" + classId + "' and SubjectId = '" + subjectId + "' and RollNo = '" + rollNo + "'");
+                                                if (dt.Rows.Count == 0)
+                                                {
+                                                    string query = "Insert into Exam values('" + classId + "','" + subjectId + "','" + rollNo + "', '" + studMarks + "', '" + outOfMarks + "')";
+                                                    fn.Query(query);
+                                                    lblMsg.Text = "Inserted successfully!";
+                                                    lblMsg.CssClass = "alert alert-success";
+                                                    ddlClass.SelectedIndex = 0;
+                                                    ddlSubject.SelectedIndex = 0;
+                                                    txtRoll.Text = String.Empty;
+                                                    txtStudentMarks.Text = String.Empty;
+                                                    txtOutOfMarks.Text = String.Empty;
+                                                    GetMarks();
+                                                }
+                                                else
+                                                {
+                                                    lblMsg.Text = "Entered <b>Data</b> already exists!";
+                                                    lblMsg.CssClass = "alert alert-danger";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                lblMsg.Text = "Entered RollNo <b>" + rollNo + "</b> does not exist for selected class!";
+                                                lblMsg.CssClass = "alert alert-danger";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -116,14 +177,15 @@ namespace ZealEducationManager.Admin
             {
                 int examId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
                 fn.Query("Delete from Exam where ExamId = '" + examId + "'");
-                lblMsg.Text = "Exam Mark Deleted Successfully!";
+                lblMsg.Text = "Exam mark deleted successfully!";
                 lblMsg.CssClass = "alert alert-success";
                 GridView1.EditIndex = -1;
                 GetMarks();
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "');</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -144,16 +206,87 @@ namespace ZealEducationManager.Admin
                 string rollNo = (row.FindControl("txtRollNoGv") as TextBox).Text.Trim();
                 string studMarks = (row.FindControl("txtStudMarksGv") as TextBox).Text.Trim();
                 string outOfMarks = (row.FindControl("txtOutOfMarksGv") as TextBox).Text.Trim();
-                fn.Query(@"Update Exam set ClassId = '" + classId + "', SubjectId = '" + subjectId + "', RollNo = '" + rollNo + "', TotalMarks = '" + studMarks + "', OutOfMarks = '" + outOfMarks + "' " +
-                        "where ExamId = '" + examId + "'");
-                lblMsg.Text = "Record Updated Successfully!";
-                lblMsg.CssClass = "alert alert-success";
-                GridView1.EditIndex = -1;
-                GetMarks();
+                if (rollNo == null || rollNo == "")
+                {
+                    lblMsg.Text = "Please enter a valid roll number!";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                else
+                {
+                    if (subjectId == null || subjectId == "" || subjectId == "Select subject")
+                    {
+                        lblMsg.Text = "Please select subject!";
+                        lblMsg.CssClass = "alert alert-danger";
+                    }
+                    else
+                    {
+                        DataTable dataCheck = fn.Fletch("select * from Student where ClassId = '" + classId + "' and RollNo = '" + rollNo + "' and ");
+                        if (dataCheck.Rows.Count == 1)
+                        {
+                            lblMsg.Text = "Entered <b>Data</b> already exists!";
+                            lblMsg.CssClass = "alert alert-danger";
+                        }
+                        else if (dataCheck.Rows.Count != 0)
+                        {
+                            if (studMarks.Length > 4)
+                            {
+                                lblMsg.Text = "Mark must be <= 1000!";
+                                lblMsg.CssClass = "alert alert-danger";
+                            }
+                            else
+                            {
+                                if (outOfMarks.Length > 4)
+                                {
+                                    lblMsg.Text = "Mark must be <= 1000!";
+                                    lblMsg.CssClass = "alert alert-danger";
+                                }
+                                else
+                                {
+                                    if (Convert.ToInt16(studMarks) < 0)
+                                    {
+                                        lblMsg.Text = "Please enter a valid mark!";
+                                        lblMsg.CssClass = "alert alert-danger";
+                                    }
+                                    else
+                                    {
+                                        if (Convert.ToInt16(outOfMarks) < 0)
+                                        {
+                                            lblMsg.Text = "Please enter a valid mark!";
+                                            lblMsg.CssClass = "alert alert-danger";
+                                        }
+                                        else
+                                        {
+                                            if (Convert.ToInt16(studMarks) > Convert.ToInt16(outOfMarks))
+                                            {
+                                                lblMsg.Text = "Total mark must be <= Out of mark!";
+                                                lblMsg.CssClass = "alert alert-danger";
+                                            }
+                                            else
+                                            {
+                                                fn.Query(@"Update Exam set ClassId = '" + classId + "', SubjectId = '" + subjectId + "', RollNo = '" + rollNo + "', TotalMarks = '" + studMarks + "', OutOfMarks = '"
+                                                            + outOfMarks + "' " + "where ExamId = '" + examId + "'");
+                                                lblMsg.Text = "Record updated successfully!";
+                                                lblMsg.CssClass = "alert alert-success";
+                                                GridView1.EditIndex = -1;
+                                                GetMarks();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            lblMsg.Text = "Entered RollNo <b>" + rollNo + "</b> does not exist for selected class!";
+                            lblMsg.CssClass = "alert alert-danger";
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 
@@ -170,7 +303,7 @@ namespace ZealEducationManager.Admin
                     ddlSubject.DataTextField = "SubjectName";
                     ddlSubject.DataValueField = "SubjectId";
                     ddlSubject.DataBind();
-                    ddlSubject.Items.Insert(0, "Select Subject");
+                    ddlSubject.Items.Insert(0, "Select subject");
                     string selectedSubject = DataBinder.Eval(e.Row.DataItem, "SubjectName").ToString();
                     ddlSubject.Items.FindByText(selectedSubject).Selected = true;
                 }

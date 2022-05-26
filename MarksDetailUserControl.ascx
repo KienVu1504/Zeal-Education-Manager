@@ -32,7 +32,7 @@
         </div>
 
         <div class="row mb-3 mr-lg-5 ml-lg-5">
-            <div class="col-md-12">
+            <div class="col-md-12" style="overflow:auto">
                 <asp:GridView ID="GridView1" runat="server" CssClass="table-font-size-17-bold table table-hover table-bordered" EmptyDataText="No record to display" AutoGenerateColumns="False" AllowPaging="true" PageSize="5"
                     OnPageIndexChanging="GridView1_PageIndexChanging">
                     <Columns>

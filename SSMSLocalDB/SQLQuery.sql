@@ -171,3 +171,7 @@ select * from Exam e inner join Class c on e.ClassId = c.ClassId inner join Subj
 select * from Student where ClassId = 3 and RollNo = 'eegegegeg32525'
 
 select * from TeacherAttendance where TeacherId = 2 and Date = CAST(GETDATE() as date);
+
+select StudentId, RollNo, Name, Mobile from Student where ClassId = 3
+
+select * from StudentAttendance where ClassId = 3 and SubjectId = 1 and RollNo = 'fghfg' and Date = CAST(GETDATE() as date)

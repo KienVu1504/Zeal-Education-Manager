@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using static ZealEducationManager.Models.CommonFn;
 
@@ -37,38 +33,61 @@ namespace ZealEducationManager.Teacher
             ddlClass.DataTextField = "ClassName";
             ddlClass.DataValueField = "ClassId";
             ddlClass.DataBind();
-            ddlClass.Items.Insert(0, "Select Class");
+            ddlClass.Items.Insert(0, "Select class");
         }
 
         protected void ddlClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             string classId = ddlClass.SelectedValue;
-            DataTable dt = fn.Fletch("Select * from Subject where ClassId = '" + classId + "'");
-            ddlSubject.DataSource = dt;
-            ddlSubject.DataTextField = "SubjectName";
-            ddlSubject.DataValueField = "SubjectId";
-            ddlSubject.DataBind();
-            ddlSubject.Items.Insert(0, "Select Subject");
+            if (classId == "Select class")
+            {
+                ddlClass.SelectedIndex = 0;
+            }
+            else
+            {
+                DataTable dt = fn.Fletch("Select * from Subject where ClassId = '" + classId + "'");
+                ddlSubject.DataSource = dt;
+                ddlSubject.DataTextField = "SubjectName";
+                ddlSubject.DataValueField = "SubjectId";
+                ddlSubject.DataBind();
+                ddlSubject.Items.Insert(0, "Select subject");
+                btnMarkAttendance.Visible = false;
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            DataTable dt = fn.Fletch(@"select StudentId, RollNo, Name, Mobile from Student where ClassId = '" + ddlClass.SelectedValue + "'");
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            if (dt.Rows.Count > 0)
+            if (ddlClass.SelectedValue == "Select class" || ddlClass.SelectedValue == null || ddlClass.SelectedValue == "")
             {
-                btnMarkAttendance.Visible = true;
+                lblMsg.Text = " Please select class!";
+                lblMsg.CssClass = "alert alert-warning";
             }
             else
             {
-                btnMarkAttendance.Visible = false;
+                if (ddlSubject.SelectedValue == "Select subject" || ddlSubject.SelectedValue == null || ddlSubject.SelectedValue == "")
+                {
+                    lblMsg.Text = " Please select subject!";
+                    lblMsg.CssClass = "alert alert-warning";
+                }
+                else
+                {
+                    DataTable dt = fn.Fletch(@"select StudentId, RollNo, Name, Mobile from Student where ClassId = '" + ddlClass.SelectedValue + "'");
+                    GridView1.DataSource = dt;
+                    GridView1.DataBind();
+                    if (dt.Rows.Count > 0)
+                    {
+                        btnMarkAttendance.Visible = true;
+                    }
+                    else
+                    {
+                        btnMarkAttendance.Visible = false;
+                    }
+                }
             }
         }
 
         protected void btnMarkAttendance_Click(object sender, EventArgs e)
         {
-            bool isTrue = false;
             foreach (GridViewRow row in GridView1.Rows)
             {
                 string rollNo = row.Cells[2].Text.Trim();
@@ -83,18 +102,19 @@ namespace ZealEducationManager.Teacher
                 {
                     status = 0;
                 }
-                fn.Query("insert into StudentAttendance values ('" + ddlClass.SelectedValue + "', '" + ddlSubject.SelectedValue + "', '" + rollNo + "', '" + status + "', '" + DateTime.Now.ToString("yyyy/MM/dd") + "')");
-                isTrue = true;
-            }
-            if (isTrue)
-            {
-                lblMsg.Text = " Inserted Successfully!";
-                lblMsg.CssClass = "alert alert-success";
-            }
-            else
-            {
-                lblMsg.Text = " Something went wrong!";
-                lblMsg.CssClass = "alert alert-warning";
+                DataTable dataCheck = fn.Fletch("select * from StudentAttendance where ClassId = '" + ddlClass.SelectedValue + "' and SubjectId = '" + ddlSubject.SelectedValue + "' and RollNo = '" + rollNo + "' " +
+                                                "and Date = CAST(GETDATE() as date)");
+                if (dataCheck.Rows.Count != 0)
+                {
+                    lblMsg.Text = "You've already taken today's attendance!";
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                else
+                {
+                    fn.Query("insert into StudentAttendance values ('" + ddlClass.SelectedValue + "', '" + ddlSubject.SelectedValue + "', '" + rollNo + "', '" + status + "', '" + DateTime.Now.ToString("yyyy/MM/dd") + "')");
+                    lblMsg.Text = " Inserted successfully!";
+                    lblMsg.CssClass = "alert alert-success";
+                }
             }
         }
     }

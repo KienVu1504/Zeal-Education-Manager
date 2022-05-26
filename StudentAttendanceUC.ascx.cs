@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using static ZealEducationManager.Models.CommonFn;
 
 namespace ZealEducationManager
 {
-	public partial class StudentAttendanceUC : System.Web.UI.UserControl
+    public partial class StudentAttendanceUC : System.Web.UI.UserControl
 	{
 		Commonfnx fn = new Commonfnx();
 		protected void Page_Load(object sender, EventArgs e)

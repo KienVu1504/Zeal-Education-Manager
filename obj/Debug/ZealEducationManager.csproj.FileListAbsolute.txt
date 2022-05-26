@@ -1,2 +1,0 @@
-G:\GitHub\ZealEducationManager\bin\roslyn\csc.exe
-G:\GitHub\ZealEducationManager\bin\roslyn\Microsoft.CodeAnalysis.dll

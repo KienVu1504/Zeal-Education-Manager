@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using static ZealEducationManager.Models.CommonFn;
 
@@ -66,9 +62,10 @@ namespace ZealEducationManager
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                lblMsg.Text = ex.Message + "!";
+                lblMsg.CssClass = "alert alert-danger";
             }
         }
 

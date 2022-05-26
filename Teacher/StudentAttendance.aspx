@@ -47,7 +47,7 @@
             </div>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
-                <div class="col-md-12">
+                <div class="col-md-12" style="overflow:auto">
                     <asp:GridView ID="GridView1" runat="server" CssClass="table-font-size-17-bold table table-hover table-bordered" EmptyDataText="No Record to display!">
                         <Columns>
                             <asp:TemplateField HeaderText="Class">
@@ -61,19 +61,19 @@
                                     </div>
                                 </ItemTemplate>
 
-                                <ItemStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle"/>
                             </asp:TemplateField>
                         </Columns>
 
-                        <HeaderStyle HorizontalAlign = "Center" BackColor="#ac32e4" ForeColor="White"/>
+                        <HeaderStyle HorizontalAlign = "Center" VerticalAlign="Middle" BackColor="#ac32e4" ForeColor="White"/>
 
-                        <PagerStyle HorizontalAlign = "Center" CssClass = "GridPager" />
+                        <PagerStyle HorizontalAlign = "Center" VerticalAlign="Middle" CssClass = "GridPager" />
                     </asp:GridView>
                 </div>
             </div>
 
             <div class="row mb-3 mr-lg-5 ml-lg-5">
-                <div class="col-md-6 col-lg-4 col-xl-3 col-md-offset-2 mb-3">
+                <div class="col-md-12 col-md-offset-2 mb-3">
                     <asp:Button ID="btnMarkAttendance" runat="server" CssClass="col-md-12 col-sm-12 btn btn-primary btn-block btn-bg-gradiant" Text="Mark attendance" OnClick="btnMarkAttendance_Click" />
                 </div>                
             </div>
